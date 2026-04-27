@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>27 Jennie Lane — Field Tool</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f1e8;
+    --bg-card: #fbf8f0;
+    --bg-card-open: #fdfaf3;
+    --ink: #1a1a1a;
+    --ink-soft: #5a5650;
+    --ink-faint: #908a7e;
+    --rule: #d8d2c0;
+    --rule-soft: #e8e2d0;
+
+    --green: #2d5e3e;
+    --green-bg: #d8e6dc;
+    --red: #8b2e2e;
+    --red-bg: #f0d8d8;
+    --amber: #8a5a18;
+    --amber-bg: #f0e0c4;
+    --blue: #2d4a6b;
+    --blue-bg: #d8e0eb;
+    --slate: #4a4a4a;
+    --slate-bg: #e2ddd0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    padding-bottom: 80px;
+  }
+
+  /* HEADER */
+  header.top {
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 32px 22px;
+    background: var(--bg);
+  }
+  .title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    font-weight: 600;
+    font-size: 38px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .meta span { color: var(--ink-soft); }
+
+  /* FILTERS */
+  .filter-bar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-bar::before {
+    content: 'FILTER';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.15em;
+    margin-right: 8px;
+  }
+  .chip {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border: 1px solid var(--rule);
+    background: var(--bg-card);
+    color: var(--ink-soft);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+  .chip:hover { border-color: var(--ink); color: var(--ink); }
+  .chip.active {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .chip .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.7;
+    margin-left: 4px;
+  }
+
+  /* MAP */
+  .map-wrap { padding: 24px 32px 0; }
+  .map-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    max-height: 560px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .map-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-faint);
+    font-style: italic;
+    background:
+      linear-gradient(45deg, var(--rule-soft) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--rule-soft) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--rule-soft) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--rule-soft) 75%);
+    background-size: 24px 24px;
+    background-position: 0 0, 0 12px, 12px -12px, 12px 0;
+  }
+  .pin {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--bg);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    text-decoration: none;
+    transition: transform 0.15s ease;
+  }
+  .pin:hover { transform: translate(-50%, -50%) scale(1.2); }
+  .pin.toxic { background: var(--red); }
+  .pin.edible { background: var(--green); }
+  .pin.useful { background: var(--blue); }
+  .pin.feature { background: var(--amber); }
+  .map-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 8px;
+  }
+
+  /* GRID */
+  .grid-wrap { padding: 24px 32px 0; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 12px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .card.hidden { display: none; }
+  .card[open] {
+    background: var(--bg-card-open);
+    border-color: var(--ink-soft);
+  }
+  .card-head {
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 10px;
+    align-items: start;
+  }
+  .card-head:hover { background: rgba(0,0,0,0.02); }
+  .card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    padding-top: 4px;
+  }
+  .card-title-block { min-width: 0; }
+  .card-name {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 24, 'SOFT' 30;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .card-latin {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .card-meta {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .conf-dots { display: inline-flex; gap: 2px; }
+  .conf-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--rule);
+  }
+  .conf-dot.on { background: var(--ink); }
+
+  .timing {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--slate-bg);
+    color: var(--slate);
+  }
+  .timing.now { background: #cfe6cf; color: #205020; }
+  .timing.soon { background: #f0e0c4; color: #6a4818; }
+  .timing.later { background: #e2ddd0; color: #4a4a4a; }
+  .timing.avoid { background: var(--red-bg); color: var(--red); }
+
+  .tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tag {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--slate-bg);
+    color: var(--slate);
+  }
+  .tag.edible { background: var(--green-bg); color: var(--green); }
+  .tag.toxic { background: var(--red-bg); color: var(--red); }
+  .tag.medicinal { background: var(--blue-bg); color: var(--blue); }
+  .tag.useful { background: var(--slate-bg); color: var(--slate); }
+  .tag.invasive { background: var(--amber-bg); color: var(--amber); }
+
+  .toggle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: var(--ink-faint);
+    width: 20px;
+    text-align: center;
+    line-height: 1.2;
+    transition: transform 0.2s ease, color 0.2s ease;
+    align-self: start;
+    margin-top: 2px;
+  }
+  .card[open] .toggle {
+    transform: rotate(45deg);
+    color: var(--ink);
+  }
+
+  .card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .card[open] .card-body { max-height: 2000px; }
+  .card-body-inner {
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--rule-soft);
+    margin-top: 4px;
+  }
+
+  .image-slot {
+    background: var(--bg);
+    border: 1px dashed var(--rule);
+    border-radius: 4px;
+    padding: 14px;
+    margin-bottom: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    line-height: 1.5;
+  }
+  .image-slot::before {
+    content: 'IMG · ';
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .image-slot img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .uses {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 6px 12px;
+    font-size: 14px;
+  }
+  .uses dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    padding-top: 3px;
+  }
+  .uses dd { color: var(--ink); }
+
+  /* INLINE FOOTNOTES */
+  .fn {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--blue);
+    background: var(--blue-bg);
+    padding: 0 4px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    user-select: none;
+    margin: 0 1px;
+    line-height: 1.6;
+    transition: background 0.15s ease;
+    vertical-align: 1px;
+  }
+  .fn:hover { background: #c0cce0; }
+  .fn::before { content: '?'; }
+  .fn[aria-expanded="true"]::before { content: '×'; }
+  .fn-body {
+    display: none;
+    background: var(--blue-bg);
+    border-left: 3px solid var(--blue);
+    padding: 8px 12px;
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: var(--blue);
+    border-radius: 0 3px 3px 0;
+    line-height: 1.5;
+  }
+  .fn-body.open { display: block; }
+
+  /* SECTION HEADERS */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 36px 32px 12px;
+    border-top: 1px solid var(--rule);
+    margin-top: 8px;
+  }
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 72, 'SOFT' 30;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+  }
+  .section-head .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+  .first-section { border-top: none; }
+
+  /* ACTIONS */
+  .actions {
+    margin: 32px;
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .actions h3 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 24, 'SOFT' 30;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .action-list {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 8px 16px;
+    font-size: 14px;
+  }
+  .action-list dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    padding-top: 3px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px;
+    color: var(--ink-faint);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+
+  @media (max-width: 600px) {
+    .filter-bar { padding: 12px 16px; }
+    .map-wrap, .grid-wrap { padding-left: 16px; padding-right: 16px; }
+    .actions { margin: 16px; }
+    .grid { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+    header.top { padding: 20px 16px 16px; }
+    .section-head { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="title-row">
+    <h1>27 Jennie Lane</h1>
+    <div class="meta"><span>Westport CT</span> · <span>April 2026</span> · <span>18 species</span></div>
+  </div>
+</header>
+
+<nav class="filter-bar">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="now">Harvest now</button>
+  <button class="chip" data-filter="edible">Edible</button>
+  <button class="chip" data-filter="toxic">Toxic</button>
+  <button class="chip" data-filter="medicinal">Medicinal</button>
+  <button class="chip" data-filter="useful">Useful</button>
+  <button class="chip" data-filter="invasive">Invasive</button>
+  <button class="chip" data-filter="check">Needs check</button>
+</nav>
+
+<section class="map-wrap">
+  <div class="map-frame" id="map">
+    <!-- CLAUDE CODE: replace next div with <img src="satellite.jpg" alt=""> -->
+    <div class="map-placeholder">drop satellite screenshot here · ~100m view</div>
+
+    <!-- pins use placeholder positions — adjust top/left % to match real locations -->
+    <a class="pin useful" href="#sp-1" style="top:25%;left:18%">1</a>
+    <a class="pin" href="#sp-2" style="top:22%;left:50%">2</a>
+    <a class="pin" href="#sp-3" style="top:18%;left:72%">3</a>
+    <a class="pin" href="#sp-4" style="top:50%;left:60%">4</a>
+    <a class="pin useful" href="#sp-5" style="top:65%;left:35%">5</a>
+    <a class="pin edible" href="#sp-6" style="top:55%;left:25%">6</a>
+    <a class="pin edible" href="#sp-7" style="top:35%;left:65%">7</a>
+    <a class="pin edible" href="#sp-8" style="top:28%;left:38%">8</a>
+    <a class="pin toxic" href="#sp-9" style="top:45%;left:80%">9</a>
+    <a class="pin toxic" href="#sp-10" style="top:40%;left:30%">10</a>
+    <a class="pin toxic" href="#sp-11" style="top:38%;left:75%">11</a>
+    <a class="pin toxic" href="#sp-12" style="top:60%;left:75%">12</a>
+    <a class="pin edible" href="#sp-13" style="top:70%;left:50%">13</a>
+    <a class="pin edible" href="#sp-14" style="top:75%;left:30%">14</a>
+    <a class="pin edible" href="#sp-15" style="top:78%;left:45%">15</a>
+    <a class="pin toxic" href="#sp-16" style="top:50%;left:20%">16</a>
+    <a class="pin edible" href="#sp-17" style="top:65%;left:15%">17</a>
+    <a class="pin feature" href="#sp-18" style="top:55%;left:50%">18</a>
+  </div>
+  <div class="map-note">// pins: <span style="color:var(--green)">●</span> edible · <span style="color:var(--red)">●</span> toxic · <span style="color:var(--blue)">●</span> useful · <span style="color:var(--amber)">●</span> feature · <span style="color:var(--ink)">●</span> tree</div>
+</section>
+
+<div class="section-head first-section">
+  <h2>Canopy</h2>
+  <span class="sub">// trees &amp; tall shrubs</span>
+</div>
+<div class="grid-wrap"><div class="grid">
+
+<article class="card" id="sp-1" data-tags="medicinal useful edible later">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">01</span>
+    <div class="card-title-block">
+      <div class="card-name">Eastern Arborvitae</div>
+      <div class="card-latin">Thuja occidentalis</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing later">Year-round</span>
+        <div class="tags"><span class="tag medicinal">Medicinal</span><span class="tag useful">Shelter</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="arborvitae-foliage, arborvitae-hedge">foliage close-up · driveway hedge wide</div>
+    <dl class="uses">
+      <dt>Use</dt><dd>Vit C tea from green tips. Shelter material. Tinder.</dd>
+      <dt>Note</dt><dd>"Tree of Life" — saved scurvy victims historically<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Cartier's crew was cured of scurvy in 1535 by an Iroquois preparation of these leaves. Confirmed extraordinarily high in Vitamin C.</div></dd>
+      <dt>Caution</dt><dd>Don't drink concentrated tea — thujone toxic in high doses.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-2" data-tags="edible medicinal useful now">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">02</span>
+    <div class="card-title-block">
+      <div class="card-name">American Elm</div>
+      <div class="card-latin">Ulmus americana</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing now">Now</span>
+        <div class="tags"><span class="tag edible">Edible</span><span class="tag medicinal">Medicinal</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="elm-samaras, elm-bark, elm-tree">samaras hanging · diamond-furrow bark · vase silhouette next to house #27</div>
+    <dl class="uses">
+      <dt>Eat now</dt><dd>Spring samaras while green &amp; tender — raw, slightly nutty.</dd>
+      <dt>Eat soon</dt><dd>Young leaves before they toughen.</dd>
+      <dt>Medicine</dt><dd>Mucilaginous inner bark — soothes throat &amp; gut.</dd>
+      <dt>Wood</dt><dd>Famously tough &amp; interlocked grain — handles, mallets.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-3" data-tags="edible toxic useful soon check">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">03</span>
+    <div class="card-title-block">
+      <div class="card-name">Black Locust</div>
+      <div class="card-latin">Robinia pseudoacacia</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot"></span></span>
+        <span class="timing soon">May–June</span>
+        <div class="tags"><span class="tag edible">Flowers only</span><span class="tag toxic">Rest toxic</span><span class="tag useful">Premium fuel</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="locust-bark, locust-canopy, locust-silhouette">rope-twisted dark bark · pinnate leaflets · sparse late-leafing canopy</div>
+    <dl class="uses">
+      <dt>Eat</dt><dd><strong>Flowers only</strong> — fritters, syrup. Sweet, fragrant.</dd>
+      <dt>Avoid</dt><dd>Seeds, bark, leaves toxic.</dd>
+      <dt>Wood</dt><dd>Hardest &amp; most rot-resistant in NA. Burns hottest.</dd>
+      <dt>Verify</dt><dd>ID needs leaf close-up<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Called from bark + late-leafing + visible compound leaflets. Get a leaf close-up — small rounded pinnate leaflets, often paired thorns at the leaf base.</div></dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-4" data-tags="edible medicinal useful now">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">04</span>
+    <div class="card-title-block">
+      <div class="card-name">Red Maple</div>
+      <div class="card-latin">Acer rubrum</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing now">Now</span>
+        <div class="tags"><span class="tag edible">Sap, seeds</span><span class="tag useful">Firewood</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="redmaple-samaras, redmaple-bark">pink samara clusters · smooth gray multi-stem trunk</div>
+    <dl class="uses">
+      <dt>Sap</dt><dd>Tappable like sugar maple — lower sugar, more boiling. Window closing.</dd>
+      <dt>Seeds</dt><dd>Boil or roast samaras while green. Like a small nut.</dd>
+      <dt>Bark</dt><dd>Inner bark edible boiled into gruel.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-5" data-tags="medicinal useful edible now">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">05</span>
+    <div class="card-title-block">
+      <div class="card-name">Black Willow</div>
+      <div class="card-latin">Salix nigra</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing now">Now</span>
+        <div class="tags"><span class="tag medicinal">Salicin</span><span class="tag useful">Cordage</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="willow-fallen, willow-resprouts">leaning trunk over pond · resprouting shoots from mossy log</div>
+    <dl class="uses">
+      <dt>Medicine</dt><dd>Inner bark = nature's aspirin (salicin). Chew young twig or simmer for tea.</dd>
+      <dt>Cordage</dt><dd>Flexible shoots — basketry, traps, shelter frames.</dd>
+      <dt>Propagate</dt><dd>Stick a cutting in wet soil — it will root<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Initially I misread the resprouts on the fallen trunk as blueberry. They're willow shoots from the parent — willows are famous resprouters from any submerged or buried piece. Free new trees forever.</div></dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-6" data-tags="edible medicinal now">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">06</span>
+    <div class="card-title-block">
+      <div class="card-name">Spicebush</div>
+      <div class="card-latin">Lindera benzoin</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing now">Now &amp; Fall</span>
+        <div class="tags"><span class="tag edible">Tea, berries</span><span class="tag medicinal">Tonic</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="spicebush-flowers, spicebush-bark">tiny yellow flower clusters on bare branches · speckled gray bark</div>
+    <dl class="uses">
+      <dt>Tea</dt><dd>Twigs &amp; leaves — one of the best wild teas in the Northeast.</dd>
+      <dt>Spice</dt><dd>Red fall berries = allspice substitute. Colonial-era staple.</dd>
+      <dt>Test</dt><dd>Scratch a twig — should smell strongly of allspice.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-7" data-tags="edible useful soon">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">07</span>
+    <div class="card-title-block">
+      <div class="card-name">Common Lilac</div>
+      <div class="card-latin">Syringa vulgaris</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing soon">Days away</span>
+        <div class="tags"><span class="tag edible">Flowers</span><span class="tag useful">Hard wood</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="lilac-buds, lilac-shrub">purple-pink bud cluster about to open · whole shrub against house</div>
+    <dl class="uses">
+      <dt>Eat</dt><dd>Flowers raw or in syrup, jelly, infused honey.</dd>
+      <dt>Window</dt><dd>~2 weeks once open. Don't miss it.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-8" data-tags="edible soon check">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">08</span>
+    <div class="card-title-block">
+      <div class="card-name">Eastern Redbud</div>
+      <div class="card-latin">Cercis canadensis</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot"></span></span>
+        <span class="timing soon">1–2 weeks</span>
+        <div class="tags"><span class="tag edible">Flowers, buds, pods</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="redbud-pods">last year's reddish papery hanging seed pods</div>
+    <dl class="uses">
+      <dt>Eat</dt><dd>Magenta flowers raw — sweet, tangy, pea-like (it's a legume).</dd>
+      <dt>Pickle</dt><dd>Buds like capers. Young pods cooked like snap peas.</dd>
+      <dt>Verify</dt><dd>Confirm with blooms<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Called from persistent dried pods only — no leaves yet. Watch for magenta-pink flowers emerging directly from bare bark in 1–2 weeks. That's redbud's signature trait.</div></dd>
+    </dl>
+  </div></div>
+</article>
+
+</div></div>
+
+<div class="section-head">
+  <h2>Foundation Plantings</h2>
+  <span class="sub">// mostly toxic — eyes only</span>
+</div>
+<div class="grid-wrap"><div class="grid">
+
+<article class="card" id="sp-9" data-tags="toxic useful">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">09</span>
+    <div class="card-title-block">
+      <div class="card-name">Hydrangea</div>
+      <div class="card-latin">Hydrangea sp.</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing avoid">Don't eat</span>
+        <div class="tags"><span class="tag toxic">Cyanogenic</span><span class="tag useful">Tinder</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="hydrangea-dried, hydrangea-shrub">papery dried flowers persisting · multi-stem foundation shrub</div>
+    <dl class="uses">
+      <dt>Avoid</dt><dd>Mildly toxic — cyanogenic glycosides. Keep kids away.</dd>
+      <dt>Use</dt><dd>Hollow dried stems = decent tinder.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-10" data-tags="toxic">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">10</span>
+    <div class="card-title-block">
+      <div class="card-name">Azalea</div>
+      <div class="card-latin">Rhododendron sp.</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing avoid">Don't eat</span>
+        <div class="tags"><span class="tag toxic">Grayanotoxin</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="azalea-buds, azalea-shrub">crimson spiraled buds · whole dense red-bud-covered shrub</div>
+    <dl class="uses">
+      <dt>Avoid</dt><dd>All parts toxic incl. nectar. "Mad honey" is from azalea nectar.</dd>
+      <dt>Symptoms</dt><dd>Vomiting, hypotension, cardiac arrhythmia<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Grayanotoxins act on cardiac sodium channels. Even small amounts dangerous to children &amp; pets. Hospital-level concern, not a "mild irritation" toxin.</div></dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-11" data-tags="toxic">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">11</span>
+    <div class="card-title-block">
+      <div class="card-name">Japanese Andromeda</div>
+      <div class="card-latin">Pieris japonica</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing avoid">Don't eat</span>
+        <div class="tags"><span class="tag toxic">Highly toxic</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="pieris-redgrowth, pieris-shrub">flame-red new growth tips · whole shrub against white wall</div>
+    <dl class="uses">
+      <dt>Avoid</dt><dd>One of the more potent grayanotoxin plants. Livestock have died.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-12" data-tags="toxic check">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">12</span>
+    <div class="card-title-block">
+      <div class="card-name">Sweetspire <em>or</em> Leucothoe</div>
+      <div class="card-latin">Itea virginica / Leucothoe fontanesiana</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot"></span><span class="conf-dot"></span></span>
+        <span class="timing avoid">Verify</span>
+        <div class="tags"><span class="tag toxic">Treat as toxic</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="sweetspire">narrow lance leaves with reddish stems · arching habit on stone wall</div>
+    <dl class="uses">
+      <dt>Why</dt><dd>The two species look near-identical here<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Leucothoe is grayanotoxin family (toxic). Sweetspire is harmless. Need leaf underside + stem cross-section + flower form. Sweetspire = white pendant racemes. Leucothoe = white urn-shaped clusters.</div></dd>
+      <dt>Until</dt><dd>Treat as do-not-eat.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-13" data-tags="edible medicinal invasive later">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">13</span>
+    <div class="card-title-block">
+      <div class="card-name">Japanese Barberry</div>
+      <div class="card-latin">Berberis thunbergii</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing later">Fall berries</span>
+        <div class="tags"><span class="tag edible">Berries</span><span class="tag medicinal">Berberine</span><span class="tag invasive">Invasive</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="barberry-leaves, barberry-shrub">burgundy spatula leaves with yellow flowers · spiny stems · whole shrub</div>
+    <dl class="uses">
+      <dt>Eat</dt><dd>Tart red fall berries — high in Vit C.</dd>
+      <dt>Medicine</dt><dd>Berberine — antimicrobial, anti-inflammatory<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Now sold as a supplement for blood sugar, gut health, infection. You have the source plant. Use root and stem bark in tea, low doses.</div></dd>
+      <dt>Harvest</dt><dd>Invasive — taking it helps the ecosystem. Watch spines.</dd>
+    </dl>
+  </div></div>
+</article>
+
+</div></div>
+
+<div class="section-head">
+  <h2>Forageable</h2>
+  <span class="sub">// the actively useful</span>
+</div>
+<div class="grid-wrap"><div class="grid">
+
+<article class="card" id="sp-14" data-tags="edible invasive now">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">14</span>
+    <div class="card-title-block">
+      <div class="card-name">Garlic Mustard</div>
+      <div class="card-latin">Alliaria petiolata</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing now">Now — peak</span>
+        <div class="tags"><span class="tag edible">All parts</span><span class="tag invasive">Invasive</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="garlicmustard-flower, garlicmustard-patch">single plant with white 4-petal flower cluster · big patch wide shot</div>
+    <dl class="uses">
+      <dt>Leaves</dt><dd>Raw or cooked. Salad, pesto, sauté.</dd>
+      <dt>Flowers</dt><dd>Edible, mild.</dd>
+      <dt>Roots</dt><dd>Horseradish-like. Grate as condiment.</dd>
+      <dt>Seeds</dt><dd>Spicy mustard substitute.</dd>
+      <dt>Test</dt><dd>Crush leaf — should smell garlicky.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-15" data-tags="edible medicinal useful now">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">15</span>
+    <div class="card-title-block">
+      <div class="card-name">Stinging Nettle</div>
+      <div class="card-latin">Urtica dioica</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing now">Now — peak</span>
+        <div class="tags"><span class="tag edible">Cooked greens</span><span class="tag medicinal">Anti-inflam</span><span class="tag useful">Fiber</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="nettle-closeup">serrated leaves &amp; reddish stinging-haired stem in hand</div>
+    <dl class="uses">
+      <dt>Harvest</dt><dd>Top 4–6" with gloves. Boil 2–3 min — sting fully neutralized<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Hairs are silica syringes injecting formic acid + histamine + serotonin. Heat collapses the silica AND denatures the chemicals. Drying or blending also neutralizes them.</div></dd>
+      <dt>Eat</dt><dd>Like spinach but more nutritious. Iron, calcium, A, C, K.</dd>
+      <dt>Tea</dt><dd>Anti-inflammatory — joints, allergies.</dd>
+      <dt>Fiber</dt><dd>Stem fiber comparable to flax — strong cordage.</dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-16" data-tags="toxic">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">16</span>
+    <div class="card-title-block">
+      <div class="card-name">Daffodil</div>
+      <div class="card-latin">Narcissus sp.</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing avoid">Don't eat</span>
+        <div class="tags"><span class="tag toxic">Lycorine</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="daffodil-leaves">strap-like blue-green fanning leaves with spent flowers</div>
+    <dl class="uses">
+      <dt>Avoid</dt><dd>Bulbs especially toxic — confused with onions, hospitalizes people yearly<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Test rule: <strong>daffodil has no onion smell</strong>. Crush a leaf or scratch a bulb. No allium aroma = not edible.</div></dd>
+    </dl>
+  </div></div>
+</article>
+
+<article class="card" id="sp-17" data-tags="edible useful now">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">17</span>
+    <div class="card-title-block">
+      <div class="card-name">Bamboo</div>
+      <div class="card-latin">Phyllostachys sp.</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing now">Shoots now</span>
+        <div class="tags"><span class="tag edible">Shoots boiled</span><span class="tag useful">Construction</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="bamboo-grove, bamboo-culm">dense grove tunnel · segmented green culm with node ring</div>
+    <dl class="uses">
+      <dt>Eat</dt><dd>New shoots — slice, boil 20 min changing water once<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Raw shoots contain cyanogenic compounds (taxiphyllin). Boiling and changing the water removes them completely. Do not eat raw.</div></dd>
+      <dt>Build</dt><dd>Strongest natural pole — shelter, frames, traps, fences.</dd>
+      <dt>Tools</dt><dd>Splits sharp — knives, arrow shafts, fish spears.</dd>
+      <dt>Fire</dt><dd>Burns hot. Hollow internodes for fire-piston.</dd>
+    </dl>
+  </div></div>
+</article>
+
+</div></div>
+
+<div class="section-head">
+  <h2>Pond Ecosystem</h2>
+  <span class="sub">// constructed · early eutrophication</span>
+</div>
+<div class="grid-wrap"><div class="grid">
+
+<article class="card" id="sp-18" data-tags="useful edible">
+  <div class="card-head" onclick="toggleCard(this)">
+    <span class="card-num">18</span>
+    <div class="card-title-block">
+      <div class="card-name">Stone-edged Pond</div>
+      <div class="card-latin">+ bullfrogs, duckweed, algae</div>
+      <div class="card-meta">
+        <span class="conf-dots"><span class="conf-dot on"></span><span class="conf-dot on"></span><span class="conf-dot on"></span></span>
+        <span class="timing later">Monitor</span>
+        <div class="tags"><span class="tag useful">Water source</span><span class="tag edible">Frogs · duckweed</span></div>
+      </div>
+    </div>
+    <span class="toggle">+</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="image-slot" data-images="pond-wide, bullfrog-1, bullfrog-2, duckweed, algae-mat, drainage">pond wide · 2 bullfrog photos · duckweed coverage · filamentous algae · drainage catch basin</div>
+    <dl class="uses">
+      <dt>Inhabitants</dt><dd>2+ male bullfrogs (apex predators). Duckweed + watermeal + filamentous algae. Tannin-stained water.</dd>
+      <dt>Status</dt><dd>40–60% surface coverage house-side. Mid-stage indicators<button class="fn" onclick="toggleFn(event,this)" aria-expanded="false"></button><div class="fn-body">Property was just mowed and "spring-cleaned" within the week before these photos. The bloom may be a transient nutrient-pulse spike rather than baseline. Reassess in 3 weeks.</div></dd>
+      <dt>Eat</dt><dd>Bullfrog legs (CT fishing license, June–Sept). Duckweed itself is high-protein.</dd>
+      <dt>Drink</dt><dd>Filter and boil. Tannin = natural blackwater, not pollution.</dd>
+    </dl>
+  </div></div>
+</article>
+
+</div></div>
+
+<div class="actions">
+  <h3>Pond Action Plan</h3>
+  <dl class="action-list">
+    <dt>This week</dt><dd>Skim worst duckweed mats. Remove from property entirely.</dd>
+    <dt>This season</dt><dd>3–4 ft unmowed buffer between lawn and pond, house side.</dd>
+    <dt>Treatment</dt><dd>Beneficial bacteria (Microbe-Lift / Pond Zyme) + barley straw extract.</dd>
+    <dt>Avoid</dt><dd>Copper sulfate, chemical algaecides — harm frogs.</dd>
+    <dt>Permanent</dt><dd>No fertilizer within 50 ft. Don't blow clippings toward water.</dd>
+    <dt>3 weeks</dt><dd>Reassess. Heavy = baseline issue. Clearer = was mowing pulse.</dd>
+  </dl>
+</div>
+
+<div class="actions">
+  <h3>Still Needs a Look</h3>
+  <dl class="action-list">
+    <dt>Sweetspire/Leucothoe</dt><dd>Closer leaf and flower for ID.</dd>
+    <dt>Redbud</dt><dd>Confirm with magenta blooms in 1–2 weeks.</dd>
+    <dt>Black locust</dt><dd>Leaf close-up once fully out.</dd>
+    <dt>Pond shrub</dt><dd>Possibly buttonbush — flowers will tell.</dd>
+    <dt>Hollow tree</dt><dd>Whatever lives in the cavity.</dd>
+  </dl>
+</div>
+
+<footer>// 27 jennie ln · field tool v1</footer>
+
+<script>
+  function toggleCard(headEl) {
+    headEl.closest('.card').toggleAttribute('open');
+  }
+
+  function toggleFn(e, btn) {
+    e.stopPropagation();
+    const body = btn.nextElementSibling;
+    const isOpen = body.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+  }
+
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('.card');
+
+  function applyFilter(filter) {
+    cards.forEach(c => {
+      const tags = (c.dataset.tags || '').split(' ');
+      const show = filter === 'all' || tags.includes(filter);
+      c.classList.toggle('hidden', !show);
+    });
+    document.querySelectorAll('.section-head').forEach(sh => {
+      let next = sh.nextElementSibling;
+      while (next && !next.classList.contains('grid-wrap') && !next.classList.contains('section-head')) {
+        next = next.nextElementSibling;
+      }
+      if (next && next.classList.contains('grid-wrap')) {
+        const visible = next.querySelectorAll('.card:not(.hidden)');
+        sh.style.display = visible.length === 0 ? 'none' : '';
+      }
+    });
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      applyFilter(chip.dataset.filter);
+    });
+  });
+
+  document.querySelectorAll('.pin').forEach(pin => {
+    pin.addEventListener('click', () => {
+      const target = document.getElementById(pin.getAttribute('href').slice(1));
+      if (target && !target.hasAttribute('open')) target.setAttribute('open', '');
+    });
+  });
+</script>
+</body>
+</html>

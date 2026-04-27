@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>27 Jennie Lane — A Field Guide to the Property</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root {
+    --bg: #f7f3eb;
+    --bg-card: #fdfaf3;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --accent: #2d4a3e;
+    --accent-light: #3e6b56;
+    --warning: #8b2e2e;
+    --rule: #d4cdbd;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 60px 32px 120px;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-bottom: 3px double var(--text);
+    padding-bottom: 32px;
+    margin-bottom: 56px;
+    text-align: center;
+  }
+  .masthead .kicker {
+    font-size: 14px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+  .masthead h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    margin: 0 0 14px;
+    font-weight: normal;
+    letter-spacing: -0.01em;
+  }
+  .masthead .subhead {
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .masthead .meta {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-top: 22px;
+  }
+
+  /* SECTION HEADERS */
+  h2 {
+    font-size: 34px;
+    font-weight: normal;
+    margin: 80px 0 8px;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+  }
+  h2 + .section-rule {
+    border-top: 1px solid var(--rule);
+    margin-bottom: 28px;
+  }
+  h2 .num {
+    font-size: 16px;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  h3 {
+    font-size: 26px;
+    font-weight: normal;
+    margin: 44px 0 4px;
+    letter-spacing: -0.005em;
+  }
+  h3 .latin {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 21px;
+    margin-left: 8px;
+  }
+  h3 .latin::before {
+    content: "·";
+    display: inline-block;
+    margin-right: 8px;
+    color: var(--rule);
+    font-style: normal;
+    font-weight: 600;
+    transform: translateY(-2px);
+  }
+  h3 .confidence { margin-left: 12px; }
+
+  /* LEDE PARAGRAPH */
+  .lede {
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 32px;
+  }
+  .lede::first-letter {
+    font-size: 64px;
+    float: left;
+    line-height: 1;
+    padding: 6px 12px 0 0;
+    font-weight: bold;
+  }
+
+  /* BODY TEXT */
+  p { margin: 0 0 18px; }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    padding: 10px 0 10px 24px;
+    margin: 28px 0;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--accent);
+  }
+
+  /* CONFIDENCE BADGES */
+  .confidence {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-left: 8px;
+    vertical-align: middle;
+    font-family: -apple-system, sans-serif;
+    font-weight: 600;
+  }
+  .confidence.high { background: #d9e7df; color: #1f4030; }
+  .confidence.medium { background: #f0e6d0; color: #6b5418; }
+  .confidence.low { background: #f0d8d8; color: #6b1e1e; }
+
+  /* TAGS */
+  .tags {
+    margin: 12px 0 18px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 13px;
+    padding: 3px 11px;
+    margin: 0 6px 6px 0;
+    border-radius: 14px;
+    font-family: -apple-system, sans-serif;
+    background: #e8e1cf;
+    color: #4a4030;
+  }
+  .tag.edible { background: #d9e7df; color: #1f4030; }
+  .tag.toxic { background: #f0d8d8; color: #6b1e1e; }
+  .tag.invasive { background: #e8d8c0; color: #6b4a18; }
+  .tag.medicinal { background: #dde0ea; color: #2a3a5a; }
+  .tag.useful { background: #e0e8d8; color: #3a4a28; }
+
+  /* IMAGE PLACEHOLDERS */
+  .image-slot {
+    background: var(--bg-card);
+    border: 1px dashed var(--rule);
+    padding: 28px;
+    margin: 22px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-family: -apple-system, sans-serif;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  .image-slot .label {
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  .image-slot .desc {
+    font-style: italic;
+  }
+  .image-slot.has-image {
+    border: none;
+    padding: 0;
+    background: none;
+  }
+  .image-slot.has-gallery {
+    text-align: left;
+  }
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .image-card {
+    margin: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .image-slot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    cursor: zoom-in;
+    transition: filter 120ms ease;
+  }
+  .image-slot img:hover { filter: brightness(0.94); }
+
+  /* IMAGE LIGHTBOX */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 12, 10, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 24px;
+    cursor: zoom-out;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 140ms ease, visibility 140ms;
+  }
+  .lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .lightbox-img {
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+    cursor: default;
+    background: #111;
+  }
+  .lightbox-caption {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    max-width: min(95vw, 720px);
+    text-align: center;
+    color: white;
+    background: rgba(12, 16, 14, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 1.4;
+    font-style: italic;
+    font-family: Georgia, "Times New Roman", serif;
+    pointer-events: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 14px;
+    right: 22px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-family: -apple-system, sans-serif;
+  }
+  .lightbox-close:hover { color: white; }
+  .image-slot .caption,
+  .image-card figcaption {
+    font-size: 14px;
+    color: var(--text-muted);
+    padding: 10px 12px 12px;
+    font-style: italic;
+  }
+
+  /* MAP SECTION */
+  .map-toolbar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 18px 0;
+  }
+  .map-upload-button,
+  .map-toolbar a.map-upload-button,
+  .map-toolbar button {
+    appearance: none;
+    border: 1px solid var(--accent);
+    background: var(--bg-card);
+    color: var(--accent);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font: inherit;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .map-upload-button:hover,
+  .map-toolbar a.map-upload-button:hover,
+  .map-toolbar button:hover {
+    background: #edf3ee;
+  }
+  .map-toolbar button.lock-active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  .map-toolbar button.lock-active:hover {
+    background: var(--accent-light);
+  }
+  .map-toolbar input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .map-frame {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+  .map-frame.is-locked::after {
+    content: "LOCKED";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(45, 74, 62, 0.9);
+    color: white;
+    font-family: -apple-system, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .map-image {
+    position: relative;
+    width: 100%;
+    display: block;
+    aspect-ratio: 4 / 3;
+    background: #e8e1cf;
+    background-image: linear-gradient(45deg, #ddd5c0 25%, transparent 25%),
+                      linear-gradient(-45deg, #ddd5c0 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, #ddd5c0 75%),
+                      linear-gradient(-45deg, transparent 75%, #ddd5c0 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: 32px;
+  }
+  .map-image.has-custom-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: transparent;
+  }
+  /* Baked-in static satellite. Used when no localStorage override is present. */
+  .map-image.has-static-map {
+    background-image: url("house-satellite.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: transparent;
+  }
+  .map-image.drag-over {
+    outline: 3px solid rgba(45, 74, 62, 0.4);
+    outline-offset: -6px;
+  }
+  .map-empty-state {
+    max-width: 34rem;
+  }
+  .map-pin {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    cursor: grab;
+    touch-action: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    z-index: 2;
+  }
+  .map-pin:focus-visible {
+    outline: 2px solid #183024;
+    outline-offset: 3px;
+    border-radius: 999px;
+  }
+  .map-pin.is-dragging {
+    z-index: 4;
+    cursor: grabbing;
+  }
+  .map-frame.is-locked .map-pin {
+    cursor: pointer;
+  }
+  .map-empty-state {
+    pointer-events: none;
+  }
+  .map-pin .dot {
+    width: 32px;
+    height: 32px;
+    background: #1d6fb1;             /* high-contrast cobalt — default */
+    color: white;
+    border-radius: 50%;              /* clean circle, doubles as inline anchor */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 0 0 2px white,
+      0 3px 8px rgba(0, 0, 0, 0.55);
+  }
+  .map-pin .num {
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  }
+  .map-pin.toxic .dot  { background: #dc2626; }   /* vivid red — danger */
+  .map-pin.edible .dot { background: #e89b00; }   /* warm amber — harvest */
+  .map-pin.is-dragging .dot {
+    box-shadow:
+      0 0 0 2px white,
+      0 0 0 6px rgba(20, 30, 25, 0.28),
+      0 6px 14px rgba(0, 0, 0, 0.55);
+  }
+
+  .map-instructions {
+    background: #fff8e8;
+    border-left: 4px solid #c8a23a;
+    padding: 18px 22px;
+    margin: 18px 0;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .map-instructions strong { color: #6b5418; }
+  .map-status {
+    font-family: -apple-system, sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  /* MAP LEGEND */
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px 28px;
+    margin: 14px 0 8px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-family: -apple-system, sans-serif;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .map-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .map-legend .legend-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow:
+      0 0 0 1.5px white,
+      0 2px 4px rgba(0, 0, 0, 0.35);
+  }
+  .map-legend .legend-dot.cobalt { background: #1d6fb1; }
+  .map-legend .legend-dot.amber  { background: #e89b00; }
+  .map-legend .legend-dot.red    { background: #dc2626; }
+  .map-legend .legend-label strong {
+    display: block;
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1px;
+  }
+  .map-legend .legend-label span {
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  /* MAP POPOVER (click-a-pin info card) */
+  .map-popover {
+    position: absolute;
+    width: 280px;
+    max-width: calc(100% - 16px);
+    padding: 14px 16px 12px;
+    background: var(--bg-card);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(20, 30, 25, 0.22);
+    z-index: 10;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--text);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 120ms ease, visibility 120ms;
+    pointer-events: none;
+  }
+  .map-popover.is-open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .map-popover .pop-close {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px 8px;
+    font-family: -apple-system, sans-serif;
+  }
+  .map-popover .pop-close:hover { color: var(--warning); }
+  .map-popover .pop-num {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-family: -apple-system, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    padding: 3px 9px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .map-popover .pop-name {
+    font-size: 19px;
+    margin: 2px 28px 0 0;
+    line-height: 1.2;
+    color: var(--text);
+  }
+  .map-popover .pop-name .latin {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 14px;
+    display: block;
+    margin-top: 2px;
+  }
+  .map-popover .pop-meta {
+    margin: 8px 0 6px;
+    line-height: 1.6;
+  }
+  .map-popover .pop-meta .confidence {
+    margin-left: 0;
+    margin-right: 6px;
+    font-size: 11px;
+    padding: 2px 7px;
+  }
+  .map-popover .pop-meta .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    margin: 0 4px 4px 0;
+  }
+  .map-popover .pop-blurb {
+    font-size: 14px;
+    margin: 8px 0 10px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .map-popover .pop-link {
+    display: inline-block;
+    font-family: -apple-system, sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  .map-popover .pop-link:hover {
+    color: var(--accent-light);
+    border-bottom-color: var(--accent-light);
+  }
+
+  /* Speech-bubble arrow on the popover (outer + inner triangle for the border effect) */
+  .map-popover .arrow {
+    position: absolute;
+    left: calc(50% + var(--arrow-offset, 0px));
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    bottom: -11px;
+    border-top: 11px solid var(--accent);
+  }
+  .map-popover .arrow::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -13px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 9px solid var(--bg-card);
+  }
+  .map-popover.flip-below .arrow {
+    bottom: auto;
+    top: -11px;
+    border-top: none;
+    border-bottom: 11px solid var(--accent);
+  }
+  .map-popover.flip-below .arrow::after {
+    top: auto;
+    bottom: -13px;
+    border-top: none;
+    border-bottom: 9px solid var(--bg-card);
+  }
+
+  /* INLINE SPECIES ANCHOR — matches the map pin, used as visual anchor on each h3 */
+  .species-anchor {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 14px;
+    background: #1d6fb1;
+    color: white;
+    font-family: -apple-system, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    border-radius: 50%;
+    text-decoration: none;
+    flex-shrink: 0;
+    vertical-align: middle;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .species-anchor.toxic  { background: #dc2626; }
+  .species-anchor.edible { background: #e89b00; }
+  .species-anchor:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 9px rgba(0, 0, 0, 0.24);
+  }
+
+  /* AUTHOR / VOICE NOTE */
+  .byline-note {
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
+    margin: 28px 0 24px;
+  }
+  .byline-note strong {
+    font-style: normal;
+    color: var(--accent);
+    font-family: -apple-system, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* CATEGORY INTRO */
+  .cat-intro {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 18px;
+    margin: 0 0 32px;
+  }
+
+  /* CALLOUT BOXES */
+  .callout {
+    background: var(--bg-card);
+    border-left: 4px solid var(--accent);
+    padding: 18px 24px;
+    margin: 24px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout.warning {
+    border-left-color: var(--warning);
+    background: #faf0f0;
+  }
+  .callout .label {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-family: -apple-system, sans-serif;
+  }
+  .callout.warning .label { color: var(--warning); }
+
+  /* CALENDAR / TABLE */
+  .calendar {
+    margin: 24px 0;
+  }
+  .calendar-row {
+    display: flex;
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 0;
+  }
+  .calendar-row:last-child { border-bottom: none; }
+  .calendar-when {
+    flex: 0 0 140px;
+    font-weight: bold;
+    color: var(--accent);
+  }
+  .calendar-what {
+    flex: 1;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 100px;
+    padding-top: 32px;
+    border-top: 3px double var(--text);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  /* ANCHOR LINKS */
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 3px;
+  }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* ERROR LIST */
+  .error-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .error-item:last-child { border-bottom: none; }
+  .error-item .what {
+    font-weight: bold;
+    color: var(--warning);
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .container { padding: 40px 20px 80px; }
+    .masthead h1 { font-size: 36px; }
+    .lede { font-size: 19px; }
+    h2 { font-size: 28px; }
+    h3 { font-size: 22px; }
+    .image-gallery { grid-template-columns: 1fr; }
+    .map-toolbar { align-items: stretch; }
+    .map-upload-button,
+    .map-toolbar button { width: 100%; text-align: center; }
+    .map-popover { width: calc(100% - 24px); font-size: 14px; }
+    .map-popover .pop-name { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ============================================ -->
+<!-- MASTHEAD                                      -->
+<!-- ============================================ -->
+<header class="masthead">
+  <div class="kicker">A Field Guide</div>
+  <h1>27 Jennie Lane</h1>
+  <p class="subhead">A botanical &amp; ecological survey of one Westport, Connecticut property</p>
+  <div class="meta">Surveyed by Claude &middot; Photographed by the property owner &middot; April 2026 &middot; Westport, CT 06880</div>
+</header>
+
+<!-- ============================================ -->
+<!-- LEDE / OVERVIEW                              -->
+<!-- ============================================ -->
+<p class="lede">In a single afternoon's walk around 27 Jennie Lane, more than twenty distinct plant species were identified, several toxic, several genuinely useful, one or two outright superstars of the New England survival larder. The property reads as a layered palimpsest: a deliberately landscaped suburban yard, an aging native woodland edge, an engineered pond now negotiating the limits of its own nutrient budget. What follows is a critical inventory — confident where the evidence held, honest where it didn't, and oriented toward what's actually edible, dangerous, or worth knowing.</p>
+
+<aside class="byline-note">
+  <strong>A note before we begin.</strong> I'm Claude — an AI model. The owner of 27 Jennie Lane sent me a folder of photographs and I wrote what follows from those. The "I" throughout is mine; the calls, hedges, and self-corrections are mine. The owner is the photographer, the eyes on the ground, and the editor — but the voice and the species calls are Claude's.
+</aside>
+
+<p class="pull-quote">A messy, "dead" corner is doing more ecological work than any manicured part of the property.</p>
+
+<!-- ============================================ -->
+<!-- PROPERTY MAP                                 -->
+<!-- ============================================ -->
+<h2><span class="num">PART I</span>The Property Map</h2>
+<div class="section-rule"></div>
+
+<p>An overhead view of 27 Jennie Lane with the species entries pinned in place. Click any pin to bring up its info card.</p>
+
+<div class="map-toolbar">
+  <a class="map-upload-button" href="https://www.google.com/maps/place/27+Jennie+Ln,+Westport,+CT+06880" target="_blank" rel="noopener">Open in Google Maps&nbsp;↗</a>
+  <!--
+    Map editing controls (latent — pins are now fixed). To re-enable the
+    upload / clear / reset / lock workflow, uncomment this block and the
+    corresponding JS event-handler block in initPropertyMap().
+
+    <label for="map-upload" class="map-upload-button">Upload Property Map</label>
+    <input id="map-upload" type="file" accept="image/*">
+    <button type="button" id="map-reset-image">Clear Map Image</button>
+    <button type="button" id="map-reset-pins">Reset Pin Positions</button>
+    <button type="button" id="map-lock" aria-pressed="false">Lock Pins</button>
+    <span class="map-status" id="map-status">No custom map image loaded.</span>
+  -->
+</div>
+
+<div class="map-frame">
+  <div class="map-image" id="property-map">
+    <div class="map-empty-state">
+      Drop a satellite screenshot of 27 Jennie Lane here, or use the upload button above.<br>
+      Recommended: a fairly tight satellite view of the full property, around 1200×900px or larger.
+    </div>
+  </div>
+
+  <a href="#sp-1" class="map-pin" data-species="arborvitae" style="top: 30%; left: 18%;">
+    <div class="dot"><span class="num">1</span></div>
+  </a>
+  <a href="#sp-2" class="map-pin" data-species="elm" style="top: 22%; left: 50%;">
+    <div class="dot"><span class="num">2</span></div>
+  </a>
+  <a href="#sp-3" class="map-pin" data-species="black-locust" style="top: 18%; left: 70%;">
+    <div class="dot"><span class="num">3</span></div>
+  </a>
+  <a href="#sp-4" class="map-pin" data-species="red-maple" style="top: 50%; left: 60%;">
+    <div class="dot"><span class="num">4</span></div>
+  </a>
+  <a href="#sp-5" class="map-pin" data-species="willow" style="top: 65%; left: 35%;">
+    <div class="dot"><span class="num">5</span></div>
+  </a>
+  <a href="#sp-6" class="map-pin edible" data-species="spicebush" style="top: 55%; left: 25%;">
+    <div class="dot"><span class="num">6</span></div>
+  </a>
+  <a href="#sp-7" class="map-pin edible" data-species="lilac" style="top: 35%; left: 65%;">
+    <div class="dot"><span class="num">7</span></div>
+  </a>
+  <a href="#sp-8" class="map-pin" data-species="redbud" style="top: 28%; left: 38%;">
+    <div class="dot"><span class="num">8</span></div>
+  </a>
+  <a href="#sp-9" class="map-pin toxic" data-species="hydrangea" style="top: 45%; left: 80%;">
+    <div class="dot"><span class="num">9</span></div>
+  </a>
+  <a href="#sp-10" class="map-pin toxic" data-species="azalea" style="top: 40%; left: 30%;">
+    <div class="dot"><span class="num">10</span></div>
+  </a>
+  <a href="#sp-11" class="map-pin toxic" data-species="pieris" style="top: 38%; left: 75%;">
+    <div class="dot"><span class="num">11</span></div>
+  </a>
+  <a href="#sp-12" class="map-pin" data-species="sweetspire" style="top: 60%; left: 75%;">
+    <div class="dot"><span class="num">12</span></div>
+  </a>
+  <a href="#sp-13" class="map-pin edible" data-species="barberry" style="top: 70%; left: 50%;">
+    <div class="dot"><span class="num">13</span></div>
+  </a>
+  <a href="#sp-14" class="map-pin edible" data-species="garlic-mustard" style="top: 75%; left: 30%;">
+    <div class="dot"><span class="num">14</span></div>
+  </a>
+  <a href="#sp-15" class="map-pin edible" data-species="nettle" style="top: 78%; left: 45%;">
+    <div class="dot"><span class="num">15</span></div>
+  </a>
+  <a href="#sp-16" class="map-pin toxic" data-species="daffodil" style="top: 50%; left: 20%;">
+    <div class="dot"><span class="num">16</span></div>
+  </a>
+  <a href="#sp-17" class="map-pin edible" data-species="bamboo" style="top: 65%; left: 15%;">
+    <div class="dot"><span class="num">17</span></div>
+  </a>
+  <a href="#sp-18" class="map-pin" data-species="pond" style="top: 55%; left: 50%;">
+    <div class="dot"><span class="num">18</span></div>
+  </a>
+  <a href="#sp-19" class="map-pin edible" data-species="bullfrog" style="top: 60%; left: 56%;">
+    <div class="dot"><span class="num">19</span></div>
+  </a>
+
+  <div class="map-popover" id="map-popover" role="dialog" aria-modal="false" aria-hidden="true">
+    <button type="button" class="pop-close" aria-label="Close info card">×</button>
+    <div class="pop-num"></div>
+    <div class="pop-name"></div>
+    <div class="pop-meta"></div>
+    <p class="pop-blurb"></p>
+    <a class="pop-link" href="#">Full entry ↓</a>
+    <div class="arrow" aria-hidden="true"></div>
+  </div>
+</div>
+
+<div class="map-legend" aria-label="Pin color legend">
+  <div class="legend-item">
+    <span class="legend-dot cobalt" aria-hidden="true"></span>
+    <span class="legend-label"><strong>Cobalt</strong><span>General — trees, structural plants, water feature</span></span>
+  </div>
+  <div class="legend-item">
+    <span class="legend-dot amber" aria-hidden="true"></span>
+    <span class="legend-label"><strong>Amber</strong><span>Edible / harvestable — eat it, with care</span></span>
+  </div>
+  <div class="legend-item">
+    <span class="legend-dot red" aria-hidden="true"></span>
+    <span class="legend-label"><strong>Red</strong><span>Toxic — do not eat any part</span></span>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- TREES                                        -->
+<!-- ============================================ -->
+<h2><span class="num">PART II</span>The Canopy &amp; The Hedge</h2>
+<div class="section-rule"></div>
+<p class="cat-intro">Trees and tall shrubs that define the property's structure.</p>
+
+<!-- 1. ARBORVITAE -->
+<article id="sp-1">
+  <h3>Eastern Arborvitae <span class="latin">Thuja occidentalis</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag medicinal">Medicinal</span>
+    <span class="tag useful">Shelter / Fire</span>
+    <span class="tag edible">Vitamin C tea</span>
+  </div>
+  <p>The substantial dense hedge running along the driveway. Flat fan-like sprays of scale leaves, columnar form 15–20+ ft, the most planted privacy hedge in the Northeast.</p>
+  <p>The name means "Tree of Life" — French explorers were saved from scurvy by Indigenous peoples brewing tea from these leaves. Extraordinarily high in Vitamin C. Don't drink the tea in large quantities (thujone is mildly toxic in concentration), but moderate use is safe and historically significant.</p>
+  <div class="image-slot" data-species="arborvitae">
+    <div class="label">Image Slot</div>
+    <div class="desc">Foliage close-up showing fan-like scale-leaf sprays + wide shot of hedge along driveway with car</div>
+  </div>
+</article>
+
+<!-- 2. AMERICAN ELM -->
+<article id="sp-2">
+  <h3>American Elm <span class="latin">Ulmus americana</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Samaras / Inner bark</span>
+    <span class="tag medicinal">Mucilage</span>
+    <span class="tag useful">Tough wood</span>
+  </div>
+  <p>Tall, vase-shaped tree with the deeply interlocking diamond-furrowed bark. The smoking gun was the spring samaras — flat, papery, oval winged seeds in clusters. Elms are unusual in dropping seeds in spring rather than fall.</p>
+  <p>The samaras are edible raw and tender right now in late April. Young leaves edible. Inner bark mucilaginous, similar to slippery elm, soothing for sore throats. Wood is famously tough and interlocking-grained.</p>
+  <div class="image-slot" data-species="elm">
+    <div class="label">Image Slot</div>
+    <div class="desc">Spring samaras hanging from branch + lichen-covered bark close-up + full tree silhouette next to house with door numbered 27</div>
+  </div>
+</article>
+
+<!-- 3. BLACK LOCUST -->
+<article id="sp-3">
+  <h3>Black Locust <span class="latin">Robinia pseudoacacia</span><span class="confidence medium">Medium confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Flowers only</span>
+    <span class="tag toxic">Seeds, bark, leaves toxic</span>
+    <span class="tag useful">Premium firewood</span>
+  </div>
+  <p>Tall tree, very dark deeply rope-twisted bark with shreddy peeling sections. Leafing out late, with small bright yellow-green pinnately compound leaflets visible in the canopy.</p>
+  <p>One of the hardest, most rot-resistant woods in North America. Burns hot and long. Flowers (May–June) are sweet, fragrant, edible — fritters or syrup. <strong>Seeds, bark, and leaves are toxic.</strong> Only the flowers are safe.</p>
+  <div class="image-slot" data-species="black-locust">
+    <div class="label">Image Slot</div>
+    <div class="desc">Deeply furrowed dark bark + tall silhouette with sparse leaves + canopy close-up showing tiny yellow-green pinnate leaflets</div>
+  </div>
+</article>
+
+<!-- 4. RED MAPLE -->
+<article id="sp-4">
+  <h3>Red Maple <span class="latin">Acer rubrum</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Sap / Seeds / Inner bark</span>
+    <span class="tag medicinal">Bark tea</span>
+    <span class="tag useful">Firewood</span>
+  </div>
+  <p>Identified from those bright pink-red samaras dangling in clusters as new leaves emerge — Red Maple has the most colorful spring samaras of any tree. Smooth silvery-gray bark on the multi-stem form near water.</p>
+  <p>Sap is tappable like sugar maple, at lower sugar content (roughly 1.5% vs sugar maple's 2–3%). Note for next year: in southern Connecticut the sap window is February through mid-March; by late April the leaves are out and the run is over. Samaras are good now though — edible boiled or roasted while still green.</p>
+  <div class="image-slot" data-species="red-maple">
+    <div class="label">Image Slot</div>
+    <div class="desc">Pink samara clusters with emerging leaves + smooth gray multi-stem bark + wide shot near pond/willow</div>
+  </div>
+</article>
+
+<!-- 5. WILLOW -->
+<article id="sp-5">
+  <h3>Black Willow <span class="latin">Salix nigra</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag medicinal">Salicin / Aspirin</span>
+    <span class="tag useful">Cordage / Weaving</span>
+    <span class="tag edible">Inner bark in extremis</span>
+  </div>
+  <p>The fallen/leaning tree across the pond, vigorously resprouting from its mossy half-submerged trunk. (Initially I misread the resprouts as blueberry — they are willow shoots emerging from the parent tree.) Willow is famous for this behavior; you can drive a live cutting into wet soil and grow a new tree.</p>
+  <p>Inner bark contains salicin — nature's aspirin. Chew a young twig or simmer bark for tea to relieve fever and pain. The young green resprouts are particularly potent. Flexible branches excellent for basketry.</p>
+  <div class="image-slot" data-species="willow">
+    <div class="label">Image Slot</div>
+    <div class="desc">Fallen willow leaning over pond + close-up of resprouting shoots from mossy trunk + duckweed-covered pond surface</div>
+  </div>
+</article>
+
+<!-- 6. SPICEBUSH -->
+<article id="sp-6">
+  <h3>Spicebush <span class="latin">Lindera benzoin</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Flowers / Berries / Tea</span>
+    <span class="tag medicinal">Warming tonic</span>
+  </div>
+  <p>Tiny bright yellow flower clusters on bare branches before leaves emerge — almost nothing else does this here. Smooth grayish bark with fine speckled lenticels. Twigs smell strongly of allspice when scratched (the scratch test is definitive).</p>
+  <p>One of the best wild teas in the Northeast. Red berries in fall taste like allspice — used as a Colonial-era spice substitute. A genuine treasure.</p>
+  <div class="image-slot" data-species="spicebush">
+    <div class="label">Image Slot</div>
+    <div class="desc">Bare branches with yellow flower clusters + lichen-speckled bark + wide shot of understory shrub at woodland edge</div>
+  </div>
+</article>
+
+<!-- 7. LILAC -->
+<article id="sp-7">
+  <h3>Common Lilac <span class="latin">Syringa vulgaris</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Flowers</span>
+    <span class="tag useful">Hardest shrub wood</span>
+  </div>
+  <p>Pyramidal clusters of purple-pink buds about to open. Smooth heart-shaped opposite leaves. Multi-stemmed shrub against a building. Days from peak bloom.</p>
+  <p>Flowers are edible — floral, slightly bitter, perfumy. Make syrup, jelly, or infused honey. Window for harvest is roughly two weeks once they open. Wood is one of the hardest shrub woods in the Northeast.</p>
+  <div class="image-slot" data-species="lilac">
+    <div class="label">Image Slot</div>
+    <div class="desc">Purple-pink bud cluster about to open + heart-shaped opposite leaves + whole shrub against house</div>
+  </div>
+</article>
+
+<!-- 8. REDBUD -->
+<article id="sp-8">
+  <h3>Eastern Redbud <span class="latin">Cercis canadensis</span><span class="confidence medium">Medium confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Flowers / Buds / Seeds</span>
+  </div>
+  <p>Identified from last year's persistent flat reddish papery seed pods hanging from bare branches. Confirmation will come in the next 1–2 weeks if magenta-pink flowers emerge directly from the bark in clusters — redbud's signature trait.</p>
+  <p>Flowers are excellent — slightly sweet, tangy, pea-like flavor (it's in the legume family). Eat raw in salads. Buds can be pickled like capers. Young pods edible cooked. Don't miss the flower window when it comes.</p>
+  <div class="image-slot" data-species="redbud">
+    <div class="label">Image Slot</div>
+    <div class="desc">Bare branches with hanging dried seed pods + watch for follow-up photos when flowers emerge</div>
+  </div>
+</article>
+
+<!-- ============================================ -->
+<!-- ORNAMENTALS - Toxic                          -->
+<!-- ============================================ -->
+<h2><span class="num">PART III</span>The Ornamentals (Mostly Toxic)</h2>
+<div class="section-rule"></div>
+<p class="cat-intro">A pattern emerged: the foundation plantings around the house are heavy with grayanotoxin shrubs. Worth knowing cold, especially with children.</p>
+
+<!-- 9. HYDRANGEA -->
+<article id="sp-9">
+  <h3>Hydrangea <span class="latin">Hydrangea arborescens / paniculata</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag toxic">Mildly toxic — do not eat</span>
+    <span class="tag useful">Hollow stems / Tinder</span>
+  </div>
+  <p>Identified by those papery dried 4-petaled "flowers" still clinging through winter — hydrangea's persistent sterile ray florets are unmistakable. Coarse opposite veined leaves, multi-stemmed against the foundation.</p>
+  <p>Contains cyanogenic glycosides — mildly toxic. Hollow dried stems work as tinder.</p>
+  <div class="image-slot" data-species="hydrangea">
+    <div class="label">Image Slot</div>
+    <div class="desc">Dried papery flowers + new green leaves emerging on stems + whole shrub with kids playing nearby</div>
+  </div>
+</article>
+
+<!-- 10. AZALEA -->
+<article id="sp-10">
+  <h3>Azalea <span class="latin">Rhododendron sp.</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag toxic">Seriously toxic — all parts</span>
+  </div>
+  <p>Tightly spiraled deep crimson buds clustered at branch tips, small leathery elliptical evergreen leaves. About to burst into bloom. Grayanotoxin throughout.</p>
+  <div class="callout warning">
+    <div class="label">Toxicity</div>
+    <p>All parts poisonous — leaves, flowers, even nectar (and honey made from azalea nectar is called "mad honey"). Symptoms include vomiting, dizziness, hypotension, cardiac arrhythmia. Keep children away when in bloom.</p>
+  </div>
+  <div class="image-slot" data-species="azalea">
+    <div class="label">Image Slot</div>
+    <div class="desc">Crimson bud clusters close-up + whole shrub showing dense spreading form covered in red buds</div>
+  </div>
+</article>
+
+<!-- 11. PIERIS -->
+<article id="sp-11">
+  <h3>Japanese Andromeda <span class="latin">Pieris japonica</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag toxic">Highly toxic — all parts</span>
+  </div>
+  <p>The signature flame-red new growth tips emerging in spring are unmistakable. Older leaves glossy leathery dark green elliptical with finely toothed margins. Foundation planting against a wall.</p>
+  <div class="callout warning">
+    <div class="label">Toxicity</div>
+    <p>One of the more potent grayanotoxin plants. Livestock have died from ingesting it. Strict avoidance.</p>
+  </div>
+  <div class="image-slot" data-species="pieris">
+    <div class="label">Image Slot</div>
+    <div class="desc">Brilliant red new growth tips against older green leaves + whole shrub against white wall</div>
+  </div>
+</article>
+
+<!-- 12. SWEETSPIRE / LEUCOTHOE -->
+<article id="sp-12">
+  <h3>Virginia Sweetspire <span class="latin">Itea virginica</span> <em>or</em> Drooping Leucothoe <span class="latin">Leucothoe fontanesiana</span><span class="confidence low">Low confidence — verify</span></h3>
+  <div class="tags">
+    <span class="tag toxic">Treat as toxic until confirmed</span>
+  </div>
+  <p>Narrow lance-shaped leaves with smooth edges, reddish arching stems, low spreading habit along a stone wall, dried dark seed remnants at top. The two species look similar in this habitat and matter materially because Leucothoe is grayanotoxic and Sweetspire is not.</p>
+  <p>Closer look needed at leaf underside, stem cross-section, and ideally the flower (Sweetspire = white pendant racemes; Leucothoe = white urn-shaped clusters).</p>
+  <div class="image-slot" data-species="sweetspire">
+    <div class="label">Image Slot</div>
+    <div class="desc">Lance-shaped leaves with reddish stems + closer leaf detail when available</div>
+  </div>
+</article>
+
+<!-- 13. BARBERRY -->
+<article id="sp-13">
+  <h3>Japanese Barberry <span class="latin">Berberis thunbergii</span> (purple cultivar)<span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Berries</span>
+    <span class="tag medicinal">Berberine</span>
+    <span class="tag invasive">Invasive — harvest helps</span>
+  </div>
+  <p>Small spatula-shaped deep burgundy leaves, tiny dangling yellow flowers, sharp spines along stems, dense twiggy arching habit.</p>
+  <p>Bright red berries in fall are edible, very tart, high in Vitamin C. The plant's <strong>berberine</strong> — a well-studied antimicrobial and anti-inflammatory now sold as a supplement — is concentrated in the roots and inner bark, not the berries. Listed as invasive in Connecticut; aggressive removal is ecologically virtuous. (The classic "harbors wheat rust" charge is mostly leveled at <em>Berberis vulgaris</em>, the European common barberry; Japanese barberry is a much weaker alternate host but worth uprooting on invasive grounds alone.)</p>
+  <div class="image-slot" data-species="barberry">
+    <div class="label">Image Slot</div>
+    <div class="desc">Burgundy leaves with yellow dangling flowers + spiny stem detail + whole shrub at pond edge</div>
+  </div>
+</article>
+
+<!-- ============================================ -->
+<!-- HERBACEOUS - Forageable                      -->
+<!-- ============================================ -->
+<h2><span class="num">PART IV</span>The Forageable</h2>
+<div class="section-rule"></div>
+<p class="cat-intro">The most actively useful category. These are the plants worth harvesting now.</p>
+
+<!-- 14. GARLIC MUSTARD -->
+<article id="sp-14">
+  <h3>Garlic Mustard <span class="latin">Alliaria petiolata</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">All parts edible</span>
+    <span class="tag invasive">Eat liberally</span>
+  </div>
+  <p>Heart/kidney-shaped scalloped leaves alternating up a single stem, becoming triangular toward the top, topped with tight clusters of tiny 4-petaled white flowers. Crushed leaves smell of garlic. Massive patch present — it spreads aggressively.</p>
+  <p>Every part edible: leaves raw or cooked, flowers raw, roots taste like horseradish, seeds spicy like mustard. Best before flowering. Harvest guilt-free — it's invasive.</p>
+  <div class="image-slot" data-species="garlic-mustard">
+    <div class="label">Image Slot</div>
+    <div class="desc">Single plant with white 4-petaled flower cluster + heart-shaped leaves + wide shot of patch</div>
+  </div>
+</article>
+
+<!-- 15. STINGING NETTLE -->
+<article id="sp-15">
+  <h3>Stinging Nettle <span class="latin">Urtica dioica</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Cooked greens — exceptional</span>
+    <span class="tag medicinal">Anti-inflammatory</span>
+    <span class="tag useful">Fiber / Cordage</span>
+  </div>
+  <p>Reddish-pink stem with stiff hollow stinging hairs, opposite coarsely serrated heart-based leaves. The stinging hairs are tiny silica syringes injecting formic acid, histamine, and serotonin — boiling for 2–3 minutes completely neutralizes them.</p>
+  <p>Among the most nutritious wild greens on earth — exceptional iron, calcium, magnesium, A, C, K. Harvest top 4–6 inches with gloves. Boil 2–3 minutes, then use like spinach. Stem fiber comparable to flax for cordage. A genuine survival superstar.</p>
+  <div class="image-slot" data-species="nettle">
+    <div class="label">Image Slot</div>
+    <div class="desc">Close-up showing serrated leaves + reddish stinging-haired stem held in hand</div>
+  </div>
+</article>
+
+<!-- 16. DAFFODIL -->
+<article id="sp-16">
+  <h3>Daffodil <span class="latin">Narcissus sp.</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag toxic">Toxic — bulbs especially</span>
+  </div>
+  <p>Flat strap-like blue-green glaucous leaves fanning out from a central base, dead papery flower remnants from earlier in the spring.</p>
+  <div class="callout warning">
+    <div class="label">Toxicity &amp; Confusion</div>
+    <p>Bulbs contain lycorine and have been mistaken for onions with serious poisoning consequences. The simple rule: <strong>daffodil bulbs and leaves have no onion smell.</strong> If you crush the leaf and don't smell onion, do not eat.</p>
+  </div>
+  <div class="image-slot" data-species="daffodil">
+    <div class="label">Image Slot</div>
+    <div class="desc">Strap-like fanning leaves with spent flower remnants on side</div>
+  </div>
+</article>
+
+<!-- 17. BAMBOO -->
+<article id="sp-17">
+  <h3>Bamboo <span class="latin">Phyllostachys sp.</span> (Running)<span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Shoots — boiled</span>
+    <span class="tag useful">Construction / Tools / Fire</span>
+  </div>
+  <p>Smooth hollow segmented green culms with distinct node rings — unmistakable. A massive, dense, fully naturalized grove with bare ground beneath. Almost certainly <em>P. aureosulcata</em> or <em>P. bissetii</em>.</p>
+  <p>Among the most useful plants on the property. New shoots emerging now in spring are edible — slice and boil 20 minutes (changing water once). Canes incredibly strong for shelter, frames, tools, fishing equipment. Burns hot, splits sharp. Essentially a survival superstore.</p>
+  <div class="callout">
+    <div class="label">Note</div>
+    <p>Raw shoots contain cyanogenic compounds. Always boil before eating, changing water once. Boiled = safe and delicious.</p>
+  </div>
+  <div class="image-slot" data-species="bamboo">
+    <div class="label">Image Slot</div>
+    <div class="desc">Wide shot of dense grove + close-up of segmented green culm showing node ring</div>
+  </div>
+</article>
+
+<!-- ============================================ -->
+<!-- POND ECOSYSTEM                               -->
+<!-- ============================================ -->
+<h2><span class="num">PART V</span>The Pond</h2>
+<div class="section-rule"></div>
+<p class="cat-intro">A constructed, stone-edged pond with a drainage inlet and at least one apex predator.</p>
+
+<article id="sp-18">
+  <h3>Stone-edged Pond &amp; Surroundings</h3>
+
+  <p>The pond was clearly engineered — stone-edged construction with multiple micro-habitat niches in the rock crevices. A drainage catch basin in the lawn routes runoff into the pond through a pipe inlet. The far bank is wild and naturalistic; the house side has more nutrient-loaded duckweed coverage.</p>
+
+  <h4 style="font-size: 22px; margin-top: 32px; color: var(--accent);">What's there</h4>
+  <ul style="line-height: 1.8;">
+    <li><strong>Duckweed</strong> (<em>Lemna</em>) covering roughly 40–60% of the surface on the house side, much less on the wild side. Possibly mixed with watermeal (<em>Wolffia</em>) but at photo resolution I can't separate them.</li>
+    <li><strong>Filamentous green algae</strong> in the water column — probably <em>Spirogyra</em>. The owner pulled some out onto a rock so I could see it; it was suspended in the pond, <em>not</em> stuck to the rocks at the waterline as I first read it.</li>
+    <li><strong>Tannin-stained water</strong> at the edges — normal blackwater chemistry from leaf litter, not pollution.</li>
+    <li><strong>Marginal vegetation</strong> establishing on the stone edges. Maybe Buttonbush, maybe Swamp Rose, plus what look like Blue Flag Iris and Broadleaf Plantain shoots. Without flowers I can't separate these.</li>
+    <li><strong>Sheet moss</strong> thick at the margins; genus probably <em>Thuidium</em> or <em>Hypnum</em>, not separable from photos alone.</li>
+    <li><strong>American bullfrogs</strong> — at least two large males. Apex-predator presence implies a working food web. Full entry: <a href="#sp-19">№ 19</a>.</li>
+  </ul>
+
+  <h4 style="font-size: 22px; margin-top: 32px; color: var(--accent);">Assessment</h4>
+  <p>Mild, asymmetric eutrophication. The house side is loaded — duckweed coverage is consistent with a stone-edged pond catching lawn runoff through a drainage inlet. The wild side is markedly cleaner, which tells you the nutrient pressure is geographically biased toward the house. The bullfrogs and the tannin chemistry are healthy signs. This is not a pond in trouble; it's a pond drifting the way every suburban pond next to a lawn drifts.</p>
+
+  <p><strong>Confidence: medium.</strong> A single afternoon of photos can't separate a transient spring-runoff pulse from a chronic baseline overload — they look identical from above. The actions below are useful either way.</p>
+
+  <p><strong>What would resolve it:</strong> a water test for nitrogen and phosphorus now, and a second one three weeks out. If phosphorus reads above ~0.05 mg/L on both, this is a chronic input problem and mechanical skimming alone won't keep up. Below that, removing some duckweed plus a buffer strip will probably hold it.</p>
+
+  <h4 style="font-size: 22px; margin-top: 32px; color: var(--accent);">Recommended actions</h4>
+  <div class="calendar">
+    <div class="calendar-row">
+      <div class="calendar-when">This week</div>
+      <div class="calendar-what">Skim the worst duckweed mats with a pool net. Get them off the property entirely — don't compost on the lawn, it cycles back.</div>
+    </div>
+    <div class="calendar-row">
+      <div class="calendar-when">This season</div>
+      <div class="calendar-what">Establish a 3–4 ft unmowed buffer strip between lawn and pond edge on the house side. The single most impactful change you can make.</div>
+    </div>
+    <div class="calendar-row">
+      <div class="calendar-when">Treatment</div>
+      <div class="calendar-what">Beneficial bacteria (Microbe-Lift, Pond Zyme) plus barley straw extract — both wildlife-safe. Avoid copper sulfate and chemical algaecides; they harm frogs and invertebrates.</div>
+    </div>
+    <div class="calendar-row">
+      <div class="calendar-when">Permanently</div>
+      <div class="calendar-what">No fertilizer within 50 ft of the pond. Don't blow grass clippings toward the water.</div>
+    </div>
+    <div class="calendar-row">
+      <div class="calendar-when">In 3 weeks</div>
+      <div class="calendar-what">Second nitrogen + phosphorus test and a fresh visual of duckweed coverage. Compare to today.</div>
+    </div>
+  </div>
+
+  <div class="image-slot" data-species="pond-wide">
+    <div class="label">Image Slot</div>
+    <div class="desc">Wide pond shot with house in background + duckweed coverage detail + filamentous algae close-up + tannin-stained water at rocks + drainage catch basin</div>
+  </div>
+</article>
+
+<!-- 19. AMERICAN BULLFROG -->
+<article id="sp-19">
+  <h3>American Bullfrog <span class="latin">Lithobates catesbeianus</span><span class="confidence high">High confidence</span></h3>
+  <div class="tags">
+    <span class="tag edible">Legs — with CT license</span>
+    <span class="tag useful">Wildlife indicator</span>
+  </div>
+  <p>At least two large males in residence. The diagnostic features were all clean from the photos: substantial size (5–8 inch body length on these), the bright yellow-green jaw and throat that males develop during breeding season, and tympanums (the round eardrum patches behind the eye) noticeably larger than the eye itself — the classic male-bullfrog tell. Females have tympanums about the same size as the eye.</p>
+  <p>Their presence is more interesting than it looks. Bullfrogs are apex predators in a small pond — they eat insects, smaller frogs, fish, even ducklings — so a healthy population implies a working food web underneath them. Their breeding call is the deep, resonant <em>jug-o-rum</em> that carries a quarter mile on still nights; if you hear it from the house in May–July, that's them.</p>
+  <div class="callout">
+    <div class="label">Note on harvest</div>
+    <p>Bullfrog legs are legitimately good eating and they are legal to take in Connecticut with an inland fishing license, typically June–September. The traditional take is at night with a flashlight (the eyes shine red) and a small gig or net. This pond likely doesn't support more than a couple of harvests per year without depleting the breeding population — leave the females.</p>
+  </div>
+  <div class="image-slot" data-species="bullfrog">
+    <div class="label">Image Slot</div>
+    <div class="desc">Single bullfrog at the waterline + second bullfrog from a different angle + two bullfrogs together in frame</div>
+  </div>
+</article>
+
+<!-- ============================================ -->
+<!-- THE FALLEN-TREE CORNER                       -->
+<!-- ============================================ -->
+<h2><span class="num">PART VI</span>The Fallen-Tree Corner</h2>
+<div class="section-rule"></div>
+
+<p>On the opposite side of the pond from the house, a cluster of standing-dead and fallen trees — including the resprouting willow, what appeared to be elm or cottonwood with a hollow base cavity, and a fully upturned root ball with an excavated void beneath. This corner is the property's <strong>highest wildlife density zone</strong>: the cavity is prime den real estate, the root ball is a guaranteed animal shelter, the fallen logs are critical decomposer habitat, and dead snags are woodpecker magnets.</p>
+
+<p>From a survival perspective: the fallen logs are seasoned firewood candidates, the hollow tree could serve as natural shelter or storage, and the upturned root void is a ready-made cache or den. Several trees are leaning precariously and could come down in a storm chain reaction — worth being aware of during high winds.</p>
+
+<p class="pull-quote">Leave it entirely alone. This messy corner is doing more ecological work than any manicured part of the property.</p>
+
+<div class="image-slot" data-species="fallen-trees">
+  <div class="label">Image Slot</div>
+  <div class="desc">Wide shot of the fallen tree cluster + hollow tree base cavity + upturned root ball with void + leaning trees over pond</div>
+</div>
+
+<!-- ============================================ -->
+<!-- WHAT'S MISSING / NEEDS FOLLOW-UP             -->
+<!-- ============================================ -->
+<h2><span class="num">PART VII</span>What Still Needs a Look</h2>
+<div class="section-rule"></div>
+
+<ul style="line-height: 1.8;">
+  <li><strong>The Sweetspire/Leucothoe shrub</strong> — closer leaf and stem photos to settle which species, given the toxicity stakes</li>
+  <li><strong>The redbud</strong> — confirm with flower photos as they emerge in the next 1–2 weeks</li>
+  <li><strong>The black locust</strong> — leaf close-up once fully out (small rounded pinnate leaflets with thorns at the leaf base)</li>
+  <li><strong>The sedge species</strong> — easier to ID once it flowers</li>
+  <li><strong>Possible buttonbush / swamp rose</strong> at pond margin — flower photos when they bloom</li>
+  <li><strong>Whatever's living in that hollow tree cavity</strong> — worth a careful peek</li>
+  <li><strong>Pond reassessment</strong> in 3 weeks to see if the algae bloom was a mowing-pulse spike or baseline state</li>
+</ul>
+
+<!-- ============================================ -->
+<!-- SEASONAL CALENDAR                            -->
+<!-- ============================================ -->
+<h2><span class="num">PART VIII</span>The Harvest Calendar</h2>
+<div class="section-rule"></div>
+
+<div class="calendar">
+  <div class="calendar-row">
+    <div class="calendar-when">Right now (late April)</div>
+    <div class="calendar-what">Stinging nettle tops · Garlic mustard (all parts) · Elm samaras while green · Red maple samaras while green · Spicebush twigs for tea · Bamboo shoots emerging</div>
+  </div>
+  <div class="calendar-row">
+    <div class="calendar-when">Next 1–2 weeks</div>
+    <div class="calendar-what">Lilac flowers · Redbud flowers (if confirmed) · Maple samaras still tender</div>
+  </div>
+  <div class="calendar-row">
+    <div class="calendar-when">May–June</div>
+    <div class="calendar-what">Black locust flowers (fritters!) · Spicebush leaves for tea · Continued nettle tops · Young bamboo shoots</div>
+  </div>
+  <div class="calendar-row">
+    <div class="calendar-when">Summer</div>
+    <div class="calendar-what">Bullfrog season opens (with CT fishing license, typically June–Sept) · Possible blueberry / pond-edge fruits if confirmed</div>
+  </div>
+  <div class="calendar-row">
+    <div class="calendar-when">Fall</div>
+    <div class="calendar-what">Spicebush berries (allspice substitute) · Barberry berries · Possible mushrooms on the upturned root ball</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- METHODOLOGY                                  -->
+<!-- ============================================ -->
+<h2><span class="num">PART IX</span>A Note on Method</h2>
+<div class="section-rule"></div>
+
+<p>Every identification in this guide was made from photographs supplied during a single conversation in late April 2026. Confidence levels reflect the actual evidence in those photos: high confidence means diagnostic features were clearly visible (samaras, distinctive bark, definitive flowers); medium confidence means the call was reasonable but lacked one or more confirming features; low confidence means it should be verified before any consequential use — particularly eating.</p>
+
+<p>The toxic plants (azalea, pieris, hydrangea, daffodil, and possibly the sweetspire/leucothoe) are common Connecticut foundation plantings and should be approached with serious caution if children are foraging. Conversely, the abundance of garlic mustard, stinging nettle, and bamboo on this property represents a remarkable concentration of practical food and material value — most properties this size in suburban Westport have one or two of these. Twenty-seven Jennie Lane has all three plus a pond, plus willow, plus spicebush. It is, in survival terms, an unusually rich square of land.</p>
+
+<!-- ============================================ -->
+<!-- CRITICAL REVIEW (final hedging)              -->
+<!-- ============================================ -->
+<h2><span class="num">PART X</span>A Critical Review</h2>
+<div class="section-rule"></div>
+
+<p>Field identification from photographs alone has real limits. Anyone using this guide should know where I was confident and where I wasn't.</p>
+
+<h3>Where the evidence was strong</h3>
+<p>The arborvitae hedge, American elm (with its diagnostic spring samaras), willow, spicebush, lilac, garlic mustard, stinging nettle, daffodil, bamboo, and the bullfrogs were all unmistakable from the photos provided. So were the three toxic ornamental shrubs — pieris, azalea, and hydrangea — each with distinctive features visible in the images.</p>
+
+<h3>Where it was reasonable but not certain</h3>
+<p>The black locust was identified primarily from bark and branching pattern without a leaf close-up; redbud was inferred from persistent dried seed pods rather than living tissue; sedge species was identified to genus but not species; the lawn was assessed as a generic fine fescue / ryegrass blend without close inspection of a single blade. These are likely correct, but worth confirming as the season progresses.</p>
+
+<h3>Where I was honestly uncertain</h3>
+<p>The Virginia Sweetspire vs. Drooping Leucothoe call was the weakest of the day — the two shrubs look superficially similar and matter materially because Leucothoe is toxic and Sweetspire is not. Treat that plant as <strong>do not eat</strong> until a closer look at the leaf underside and stem confirms which it is.</p>
+
+<h3>Where I made a mistake</h3>
+<div class="error-item">
+  <span class="what">Misidentified willow resprouts as blueberry sprouts.</span> When the owner shared a close-up of a fallen tree partially submerged in the pond, I initially read the new shoots emerging from the mossy trunk as highbush blueberry. The owner corrected me — the shoots and the tree are the same organism. Willow is famous for resprouting from any submerged or buried portion. The correction made the willow finding more valuable, not less.
+</div>
+
+<footer>
+  Field guide compiled April 2026 &middot; 27 Jennie Lane, Westport CT 06880<br>
+  Confidence levels and uncertainties documented as honestly as possible.
+</footer>
+
+</div><!-- /.container -->
+<script>
+  const imageLibrary = {
+    arborvitae: [
+      { src: "images/thuja1.webp", alt: "Arborvitae foliage close-up", caption: "Arborvitae foliage close-up." },
+      { src: "images/thuja2.webp", alt: "Arborvitae hedge along the driveway", caption: "Arborvitae hedge and privacy screen." }
+    ],
+    elm: [
+      { src: "images/elm1.webp", alt: "American elm with spring samaras", caption: "Elm branch carrying spring samaras." },
+      { src: "images/elm2.webp", alt: "American elm bark close-up", caption: "Diamond-furrowed bark on the elm." },
+      { src: "images/elm3.webp", alt: "Full view of the American elm near the house", caption: "Full silhouette of the elm near the house." }
+    ],
+    "black-locust": [
+      { src: "images/black_locust1.webp", alt: "Black locust bark and branching", caption: "Black locust trunk and branching structure." },
+      { src: "images/black_locust2.webp", alt: "Black locust branch close-up", caption: "Closer look at the suspected black locust." },
+      { src: "images/black_locust3.webp", alt: "Black locust overall view", caption: "Wider view for context." }
+    ],
+    "red-maple": [
+      { src: "images/red_maple1.webp", alt: "Red maple canopy and trunk", caption: "Red maple from the yard side." },
+      { src: "images/red_maple2.webp", alt: "Red maple bark and lower branching", caption: "Closer view of trunk and lower structure." }
+    ],
+    willow: [
+      { src: "images/pond_willow1.webp", alt: "Willow near the pond", caption: "Willow form at the pond edge." },
+      { src: "images/pond_willow2.webp", alt: "Willow branch close-up", caption: "Closer look at the willow growth near water." }
+    ],
+    spicebush: [
+      { src: "images/spicebush1.webp", alt: "Spicebush branch close-up", caption: "Spicebush branch detail." },
+      { src: "images/spicebush2.webp", alt: "Spicebush leaves and stems", caption: "Leaf and stem view for identification." },
+      { src: "images/spicebush3.webp", alt: "Wider view of the spicebush", caption: "Wider shot of the spicebush in place." }
+    ],
+    lilac: [
+      { src: "images/lilac.webp", alt: "Lilac shrub", caption: "Lilac shrub in spring growth." }
+    ],
+    redbud: [
+      { src: "images/eastern_redbud.webp", alt: "Eastern redbud", caption: "Probable eastern redbud; worth revisiting as flowers emerge." }
+    ],
+    hydrangea: [
+      { src: "images/hydrangea1.webp", alt: "Hydrangea shrub overview", caption: "Hydrangea overall form." },
+      { src: "images/hydrangea2.webp", alt: "Hydrangea leaves close-up", caption: "Leaf detail on the hydrangea." },
+      { src: "images/hydrangea3.webp", alt: "Hydrangea stem and leaf detail", caption: "Additional structure and foliage detail." }
+    ],
+    azalea: [
+      { src: "images/azalea1.webp", alt: "Azalea shrub", caption: "Azalea habit and branching." },
+      { src: "images/azalea2.webp", alt: "Azalea foliage close-up", caption: "Closer foliage view." }
+    ],
+    pieris: [
+      { src: "images/pieris_japonica.webp", alt: "Pieris japonica shrub", caption: "Pieris japonica at the foundation planting." }
+    ],
+    sweetspire: [
+      { src: "images/virginia_sweetspire.webp", alt: "Virginia sweetspire or similar shrub", caption: "Shrub identified as probable Virginia sweetspire; still worth confirming." }
+    ],
+    barberry: [
+      { src: "images/japanese_barberry.webp", alt: "Japanese barberry shrub", caption: "Japanese barberry in the lower yard." }
+    ],
+    "garlic-mustard": [
+      { src: "images/garlic_mustard1.webp", alt: "Garlic mustard patch", caption: "Garlic mustard patch." },
+      { src: "images/garlic_mustard2.webp", alt: "Garlic mustard close-up", caption: "Closer look at leaves and flowering habit." }
+    ],
+    nettle: [
+      { src: "images/stinging_nettles.webp", alt: "Stinging nettles", caption: "Dense patch of stinging nettles." }
+    ],
+    daffodil: [
+      { src: "images/daffodil.webp", alt: "Daffodils near the house", caption: "Daffodils in ornamental planting." }
+    ],
+    bamboo: [
+      { src: "images/bamboo1.webp", alt: "Bamboo stand", caption: "Bamboo stand from the outside edge." },
+      { src: "images/bamboo2.webp", alt: "Bamboo culms and shoots", caption: "Closer bamboo detail." }
+    ],
+    pond: [
+      { src: "images/pond1.webp", alt: "Pond view", caption: "Main pond view." },
+      { src: "images/pond2.webp", alt: "Pond from another angle", caption: "Pond from a second angle." },
+      { src: "images/pond_algae_closeup.webp", alt: "Pond algae close-up", caption: "Close-up of the algae bloom." }
+    ],
+    "pond-wide": [
+      { src: "images/pond1.webp", alt: "Pond overview", caption: "Pond overview." },
+      { src: "images/pond2.webp", alt: "Pond wider context", caption: "Pond in wider yard context." },
+      { src: "images/pond_other1.webp", alt: "Additional pond angle", caption: "Additional pond angle for context." },
+      { src: "images/pond_other2.webp", alt: "Pond edge vegetation", caption: "Pond edge vegetation." },
+      { src: "images/pond_other3.webp", alt: "Pond shoreline view", caption: "Another shoreline view." },
+      { src: "images/pond_other4.webp", alt: "Pond margin and plant growth", caption: "Pond margin and nearby growth." },
+      { src: "images/pond_other5.webp", alt: "Pond edge detail", caption: "Additional pond edge detail." },
+      { src: "images/pond_drainage.webp", alt: "Pond drainage area", caption: "Drainage feature connected to the pond." },
+      { src: "images/pond_drainage1.webp", alt: "Pond drainage detail 1", caption: "Drainage detail." },
+      { src: "images/pond_drainage2.webp", alt: "Pond drainage detail 2", caption: "Additional drainage detail." },
+      { src: "images/pond_drainage3.webp", alt: "Pond drainage detail 3", caption: "Another drainage angle." },
+      { src: "images/pond_drainage4.webp", alt: "Pond drainage detail 4", caption: "Close view of runoff and drainage." },
+      { src: "images/sedge.webp", alt: "Sedge at the water margin", caption: "Sedge growing at the pond margin." },
+      { src: "images/moss.webp", alt: "Moss near the pond", caption: "Mossy patch near the wetter ground." },
+      { src: "images/grass1.webp", alt: "Yard grass near pond", caption: "General grass condition nearby." },
+      { src: "images/grass2.webp", alt: "More grass around the pond", caption: "Another grass patch around the pond." },
+      { src: "images/grass3.webp", alt: "Grass close-up", caption: "Additional turf and groundcover context." }
+    ],
+    bullfrog: [
+      { src: "images/bullfrog1.webp", alt: "American bullfrog at the pond's edge", caption: "Bullfrog at the waterline — yellow-green throat and large tympanum behind the eye." },
+      { src: "images/bullfrog2.webp", alt: "Second bullfrog from a different angle", caption: "A second male, head-on; tympanum visibly larger than the eye." },
+      { src: "images/bullfrogs_both.webp", alt: "Two bullfrogs together at the pond", caption: "Two males in frame — apex-predator presence in a small pond." }
+    ],
+    "fallen-trees": [
+      { src: "images/fallen_trees1.webp", alt: "Fallen trees habitat 1", caption: "Fallen timber and brush pile habitat." },
+      { src: "images/fallen_trees2.webp", alt: "Fallen trees habitat 2", caption: "Another angle on the fallen tree tangle." },
+      { src: "images/fallen_trees3.webp", alt: "Fallen trees habitat 3", caption: "Brush and downed wood at the property edge." },
+      { src: "images/fallen_trees4.webp", alt: "Fallen trees habitat 4", caption: "More structural deadwood." },
+      { src: "images/fallen_trees5.webp", alt: "Fallen trees habitat 5", caption: "Downed trunks with dense understory." },
+      { src: "images/fallen_trees6.webp", alt: "Fallen trees habitat 6", caption: "Deadwood pile from another angle." },
+      { src: "images/fallen_trees7.webp", alt: "Fallen trees habitat 7", caption: "Another view into the habitat tangle." },
+      { src: "images/fallen_trees8.webp", alt: "Fallen trees habitat 8", caption: "Additional deadwood context." }
+    ]
+  };
+
+  function hydrateImageSlots() {
+    document.querySelectorAll(".image-slot").forEach((slot) => {
+      const species = slot.dataset.species;
+      const images = imageLibrary[species];
+
+      if (!images || !images.length) {
+        return;
+      }
+
+      slot.classList.add("has-image", "has-gallery");
+      slot.innerHTML = `
+        <div class="image-gallery">
+          ${images.map((image) => `
+            <figure class="image-card">
+              <img src="${image.src}" alt="${image.alt}" loading="lazy">
+              <figcaption>${image.caption}</figcaption>
+            </figure>
+          `).join("")}
+        </div>
+      `;
+    });
+  }
+
+  function initLightbox() {
+    const lightbox = document.createElement("div");
+    lightbox.className = "lightbox";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "Enlarged image");
+    lightbox.innerHTML = `
+      <button class="lightbox-close" type="button" aria-label="Close enlarged image">×</button>
+      <img class="lightbox-img" alt="">
+      <div class="lightbox-caption"></div>
+    `;
+    document.body.appendChild(lightbox);
+
+    const img = lightbox.querySelector(".lightbox-img");
+    const cap = lightbox.querySelector(".lightbox-caption");
+    const closeBtn = lightbox.querySelector(".lightbox-close");
+    let prevOverflow = "";
+
+    function open(src, alt, caption) {
+      img.src = src;
+      img.alt = alt || "";
+      cap.textContent = caption || "";
+      cap.style.display = caption ? "block" : "none";
+      lightbox.classList.add("is-open");
+      prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+    }
+    function close() {
+      lightbox.classList.remove("is-open");
+      document.body.style.overflow = prevOverflow;
+      // clear src after fade so we don't flash a stale image next time
+      setTimeout(() => { if (!lightbox.classList.contains("is-open")) img.src = ""; }, 200);
+    }
+
+    document.addEventListener("click", (event) => {
+      const clicked = event.target.closest(".image-slot img");
+      if (clicked) {
+        const figure = clicked.closest("figure");
+        const captionText = figure?.querySelector("figcaption")?.textContent?.trim() || "";
+        open(clicked.src, clicked.alt, captionText);
+        return;
+      }
+      if (!lightbox.classList.contains("is-open")) return;
+      // click on the image itself shouldn't close; backdrop and close button do
+      if (event.target === img) return;
+      close();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("is-open")) close();
+    });
+  }
+
+  function decorateSpeciesAnchors() {
+    document.querySelectorAll(".map-pin").forEach((pin) => {
+      const href = pin.getAttribute("href");
+      if (!href || !href.startsWith("#")) return;
+      const article = document.querySelector(href);
+      if (!article) return;
+      const h3 = article.querySelector("h3");
+      if (!h3 || h3.querySelector(".species-anchor")) return;
+
+      const num = (pin.querySelector(".num")?.textContent || "").trim();
+      const anchor = document.createElement("a");
+      anchor.className = "species-anchor";
+      if (pin.classList.contains("toxic"))  anchor.classList.add("toxic");
+      if (pin.classList.contains("edible")) anchor.classList.add("edible");
+      anchor.href = "#property-map";
+      anchor.textContent = num;
+      anchor.setAttribute("aria-label", `Pin ${num} — back to map`);
+      anchor.title = "Back to map";
+      h3.insertBefore(anchor, h3.firstChild);
+    });
+  }
+
+  function buildSpeciesIndex() {
+    // Drive off the pins themselves: each pin's data-species is the lookup key,
+    // and its href ("#sp-N") points at the article to extract content from.
+    // This way the index can never desync from what the pins actually use
+    // (article 18's image-slot, for instance, has data-species="pond-wide" but
+    // its pin is data-species="pond" — the pin's link is the source of truth).
+    const idx = {};
+    document.querySelectorAll(".map-pin").forEach((pin) => {
+      const species = pin.dataset.species;
+      const href = pin.getAttribute("href");
+      if (!species || !href || !href.startsWith("#")) return;
+      const article = document.querySelector(href);
+      if (!article) return;
+
+      const numEl = article.querySelector(".species-num");
+      const h3 = article.querySelector("h3");
+      const conf = h3 ? h3.querySelector(".confidence") : null;
+      const tags = Array.from(article.querySelectorAll(".tags .tag")).slice(0, 4);
+      const firstP = article.querySelector("p");
+
+      let nameHTML = "";
+      if (h3) {
+        const clone = h3.cloneNode(true);
+        clone.querySelectorAll(".confidence, .species-anchor").forEach((c) => c.remove());
+        nameHTML = clone.innerHTML.trim();
+      }
+
+      const numberText = (numEl?.textContent || "").split("—")[0].trim();
+      const blurb = (firstP?.textContent || "").trim();
+
+      idx[species] = {
+        species,
+        number: numberText,
+        nameHTML,
+        confidenceHTML: conf ? conf.outerHTML : "",
+        tagsHTML: tags.map((t) => t.outerHTML).join(" "),
+        blurb,
+        anchor: href
+      };
+    });
+    return idx;
+  }
+
+  function truncateBlurb(text, max = 200) {
+    if (!text || text.length <= max) return text || "";
+    const slice = text.slice(0, max);
+    const lastPeriod = slice.lastIndexOf(".");
+    const lastSpace = slice.lastIndexOf(" ");
+    const cut = lastPeriod > max * 0.55 ? lastPeriod + 1 : (lastSpace > 0 ? lastSpace : max);
+    return text.slice(0, cut).trim() + "…";
+  }
+
+  function initPropertyMap() {
+    const mapFrame = document.querySelector(".map-frame");
+    const mapImage = document.getElementById("property-map");
+    const popover = document.getElementById("map-popover");
+    const pins = Array.from(document.querySelectorAll(".map-pin"));
+
+    // Toolbar elements — currently latent (removed from HTML). Lookups will be null
+    // unless the toolbar HTML block is restored. Revive together with the
+    // commented HTML block above.
+    const mapUpload     = document.getElementById("map-upload");
+    const mapResetImage = document.getElementById("map-reset-image");
+    const mapResetPins  = document.getElementById("map-reset-pins");
+    const mapLock       = document.getElementById("map-lock");
+    const mapStatus     = document.getElementById("map-status");
+
+    if (!mapFrame || !mapImage || !popover || !pins.length) {
+      return;
+    }
+
+    const storagePrefix = "jennie-lane-field-guide";
+    const imageKey = `${storagePrefix}:map-image`;
+    const pinKey = `${storagePrefix}:pin-positions`;
+    const lockKey = `${storagePrefix}:pins-locked`;
+    const DRAG_THRESHOLD = 6; // px of pointer movement before a press counts as a drag
+
+    // Pins are permanently locked while the editing toolbar is hidden.
+    // To restore drag editing, revive the toolbar HTML and switch this back to:
+    //   let isLocked = localStorage.getItem(lockKey) === "true";
+    let isLocked = true;
+
+    // Stop the browser's native HTML5 drag-image (which would otherwise hijack pointermove on <a>)
+    pins.forEach((pin) => {
+      pin.draggable = false;
+      pin.addEventListener("dragstart", (event) => event.preventDefault());
+    });
+
+    function defaultStatus() {
+      if (isLocked) {
+        return "Pins are locked. Click a pin to jump to its species entry.";
+      }
+      return mapImage.classList.contains("has-custom-image")
+        ? "Map loaded. Drag pins to position them, then Lock Pins when done."
+        : "No custom map image loaded.";
+    }
+
+    function setStatus(text) {
+      // mapStatus may be null (toolbar is hidden); silently no-op when absent.
+      if (mapStatus) mapStatus.textContent = text;
+    }
+
+    function updateLockUI() {
+      if (isLocked) {
+        mapFrame.classList.add("is-locked");
+        if (mapLock) {
+          mapLock.classList.add("lock-active");
+          mapLock.textContent = "Unlock Pins";
+          mapLock.setAttribute("aria-pressed", "true");
+        }
+      } else {
+        mapFrame.classList.remove("is-locked");
+        if (mapLock) {
+          mapLock.classList.remove("lock-active");
+          mapLock.textContent = "Lock Pins";
+          mapLock.setAttribute("aria-pressed", "false");
+        }
+      }
+    }
+
+    function savePinPositions() {
+      const positions = {};
+      pins.forEach((pin) => {
+        positions[pin.dataset.species] = {
+          top: pin.style.top,
+          left: pin.style.left
+        };
+      });
+      localStorage.setItem(pinKey, JSON.stringify(positions));
+    }
+
+    function applyStoredPins() {
+      const raw = localStorage.getItem(pinKey);
+      if (!raw) return;
+      try {
+        const positions = JSON.parse(raw);
+        pins.forEach((pin) => {
+          const saved = positions[pin.dataset.species];
+          if (saved?.top && saved?.left) {
+            pin.style.top = saved.top;
+            pin.style.left = saved.left;
+          }
+        });
+      } catch (error) {
+        console.warn("Could not restore pin positions.", error);
+      }
+    }
+
+    function setMapImage(dataUrl) {
+      if (dataUrl) {
+        mapImage.style.backgroundImage = `url("${dataUrl}")`;
+        mapImage.classList.add("has-custom-image");
+        mapImage.innerHTML = "";
+        localStorage.setItem(imageKey, dataUrl);
+      } else {
+        mapImage.style.backgroundImage = "";
+        mapImage.classList.remove("has-custom-image");
+        mapImage.innerHTML = `
+          <div class="map-empty-state">
+            Drop a satellite screenshot of 27 Jennie Lane here, or use the upload button above.<br>
+            Recommended: a fairly tight satellite view of the full property, around 1200×900px or larger.
+          </div>
+        `;
+        localStorage.removeItem(imageKey);
+      }
+      setStatus(defaultStatus());
+    }
+
+    function loadMapFile(file) {
+      if (!file || !file.type.startsWith("image/")) return;
+      const reader = new FileReader();
+      reader.onload = () => setMapImage(reader.result);
+      reader.readAsDataURL(file);
+    }
+
+    function movePin(pin, clientX, clientY) {
+      const rect = mapFrame.getBoundingClientRect();
+      const x = Math.min(Math.max(clientX - rect.left, 0), rect.width);
+      const y = Math.min(Math.max(clientY - rect.top, 0), rect.height);
+      const left = (x / rect.width) * 100;
+      const top = (y / rect.height) * 100;
+      pin.style.left = `${left.toFixed(2)}%`;
+      pin.style.top = `${top.toFixed(2)}%`;
+    }
+
+    const speciesIndex = buildSpeciesIndex();
+    const popClose = popover.querySelector(".pop-close");
+    const popNum = popover.querySelector(".pop-num");
+    const popName = popover.querySelector(".pop-name");
+    const popMeta = popover.querySelector(".pop-meta");
+    const popBlurb = popover.querySelector(".pop-blurb");
+    const popLink = popover.querySelector(".pop-link");
+    let activePin = null;
+
+    function hidePopover() {
+      popover.classList.remove("is-open", "flip-below");
+      popover.style.removeProperty("--arrow-offset");
+      popover.setAttribute("aria-hidden", "true");
+      activePin = null;
+    }
+
+    function positionPopover(pin) {
+      const PIN_HEIGHT = 32; // dot height + small allowance
+      const GAP = 12;
+
+      const pinTopPct = parseFloat(pin.style.top) || 50;
+      const pinLeftPct = parseFloat(pin.style.left) || 50;
+      const frameRect = mapFrame.getBoundingClientRect();
+      const pinTipX = (pinLeftPct / 100) * frameRect.width;
+      const pinTipY = (pinTopPct / 100) * frameRect.height;
+
+      // Make popover measurable
+      popover.classList.remove("flip-below");
+      popover.style.removeProperty("--arrow-offset");
+      popover.style.left = "0px";
+      popover.style.top = "0px";
+      popover.style.visibility = "hidden";
+      popover.classList.add("is-open");
+
+      const popW = popover.offsetWidth;
+      const popH = popover.offsetHeight;
+
+      const aboveTop = pinTipY - PIN_HEIGHT - GAP - popH;
+      const belowTop = pinTipY + GAP;
+      const flipBelow = aboveTop < 4;
+      let popTop = flipBelow ? belowTop : aboveTop;
+      let popLeft = pinTipX - popW / 2;
+
+      // If flipping below would also overflow the frame bottom, prefer the better fit
+      if (flipBelow && belowTop + popH > frameRect.height - 4) {
+        // not enough below either — clamp to frame bottom
+        popTop = Math.max(4, frameRect.height - popH - 4);
+      }
+
+      // Horizontal clamp + arrow offset so the arrow keeps pointing at the pin
+      const minX = 6;
+      const maxX = frameRect.width - popW - 6;
+      let arrowOffset = 0;
+      if (popLeft < minX) {
+        arrowOffset = popLeft - minX;
+        popLeft = minX;
+      } else if (popLeft > maxX) {
+        arrowOffset = popLeft - maxX;
+        popLeft = maxX;
+      }
+
+      // Keep the arrow within the popover edges so it still looks attached
+      const ARROW_INSET = 18;
+      const halfWidth = popW / 2 - ARROW_INSET;
+      arrowOffset = Math.max(-halfWidth, Math.min(halfWidth, arrowOffset));
+
+      if (flipBelow) popover.classList.add("flip-below");
+      popover.style.left = popLeft + "px";
+      popover.style.top = popTop + "px";
+      popover.style.setProperty("--arrow-offset", arrowOffset + "px");
+      popover.style.visibility = "";
+    }
+
+    function showPopover(pin) {
+      const data = speciesIndex[pin.dataset.species];
+      if (!data) return;
+
+      popNum.textContent = data.number || "";
+      popNum.style.display = data.number ? "inline-block" : "none";
+      popName.innerHTML = data.nameHTML || "";
+      popMeta.innerHTML = (data.confidenceHTML || "") + (data.tagsHTML || "");
+      popMeta.style.display = (data.confidenceHTML || data.tagsHTML) ? "block" : "none";
+      popBlurb.textContent = truncateBlurb(data.blurb, 220);
+      popBlurb.style.display = data.blurb ? "block" : "none";
+      popLink.setAttribute("href", data.anchor);
+
+      activePin = pin;
+      positionPopover(pin);
+      popover.setAttribute("aria-hidden", "false");
+    }
+
+    pins.forEach((pin) => {
+      let activePointerId = null;
+      let startX = 0;
+      let startY = 0;
+      let dragging = false;
+      let suppressNextClick = false;
+
+      pin.addEventListener("pointerdown", (event) => {
+        // any interaction with a pin closes a stale popover; the click handler will reopen if appropriate
+        if (activePin && activePin !== pin) hidePopover();
+        if (isLocked) return; // locked: drag is disabled, click handler still shows popover
+        if (event.button !== undefined && event.button !== 0) return; // mouse: primary button only
+        activePointerId = event.pointerId;
+        startX = event.clientX;
+        startY = event.clientY;
+        dragging = false;
+        suppressNextClick = false;
+        try { pin.setPointerCapture(event.pointerId); } catch (e) {}
+        event.preventDefault(); // suppress text-select and any latent native drag behavior
+      });
+
+      pin.addEventListener("pointermove", (event) => {
+        if (event.pointerId !== activePointerId) return;
+        if (!dragging) {
+          const dx = event.clientX - startX;
+          const dy = event.clientY - startY;
+          if (Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
+          dragging = true;
+          pin.classList.add("is-dragging");
+          hidePopover(); // close any popover the moment a real drag starts
+        }
+        movePin(pin, event.clientX, event.clientY);
+      });
+
+      function endPointer(event) {
+        if (event.pointerId !== activePointerId) return;
+        try { pin.releasePointerCapture(event.pointerId); } catch (e) {}
+        pin.classList.remove("is-dragging");
+        activePointerId = null;
+        if (dragging) {
+          savePinPositions();
+          suppressNextClick = true;
+        }
+        dragging = false;
+      }
+      pin.addEventListener("pointerup", endPointer);
+      pin.addEventListener("pointercancel", endPointer);
+
+      pin.addEventListener("click", (event) => {
+        // Always suppress the native anchor jump — popover replaces that behavior
+        event.preventDefault();
+        if (suppressNextClick) {
+          suppressNextClick = false;
+          return; // a real drag just ended; do not pop up the card
+        }
+        if (activePin === pin) {
+          hidePopover();
+        } else {
+          showPopover(pin);
+        }
+      });
+    });
+
+    // === LATENT EDITING TOOLBAR ============================================
+    // The HTML toolbar (upload / clear / reset-pins / lock) is currently
+    // commented out. These handlers attach only when the corresponding DOM
+    // elements exist, so the file works as-is and is one comment-flip away
+    // from being editable again. Revive together with the HTML block above
+    // and flip `isLocked = true` (declared earlier) back to reading lockKey.
+    if (mapUpload) {
+      mapUpload.addEventListener("change", (event) => {
+        loadMapFile(event.target.files?.[0]);
+      });
+    }
+
+    if (mapResetImage) {
+      mapResetImage.addEventListener("click", () => {
+        if (mapUpload) mapUpload.value = "";
+        setMapImage(null);
+      });
+    }
+
+    if (mapResetPins) {
+      mapResetPins.addEventListener("click", () => {
+        if (isLocked) {
+          setStatus("Pins are locked — unlock first to reset positions.");
+          return;
+        }
+        localStorage.removeItem(pinKey);
+        const defaults = {
+          arborvitae: { top: "30%", left: "18%" },
+          elm: { top: "22%", left: "50%" },
+          "black-locust": { top: "18%", left: "70%" },
+          "red-maple": { top: "50%", left: "60%" },
+          willow: { top: "65%", left: "35%" },
+          spicebush: { top: "55%", left: "25%" },
+          lilac: { top: "35%", left: "65%" },
+          redbud: { top: "28%", left: "38%" },
+          hydrangea: { top: "45%", left: "80%" },
+          azalea: { top: "40%", left: "30%" },
+          pieris: { top: "38%", left: "75%" },
+          sweetspire: { top: "60%", left: "75%" },
+          barberry: { top: "70%", left: "50%" },
+          "garlic-mustard": { top: "75%", left: "30%" },
+          nettle: { top: "78%", left: "45%" },
+          daffodil: { top: "50%", left: "20%" },
+          bamboo: { top: "65%", left: "15%" },
+          pond: { top: "55%", left: "50%" },
+          bullfrog: { top: "60%", left: "56%" }
+        };
+        pins.forEach((pin) => {
+          const fallback = defaults[pin.dataset.species];
+          if (fallback) {
+            pin.style.top = fallback.top;
+            pin.style.left = fallback.left;
+          }
+        });
+        savePinPositions();
+        setStatus(defaultStatus());
+      });
+    }
+
+    if (mapLock) {
+      mapLock.addEventListener("click", () => {
+        isLocked = !isLocked;
+        localStorage.setItem(lockKey, String(isLocked));
+        updateLockUI();
+        setStatus(defaultStatus());
+      });
+    }
+
+    // Drag-and-drop of an image onto the map frame is also part of the editing
+    // workflow; gated on the map being editable.
+    if (mapUpload) {
+      mapImage.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        mapImage.classList.add("drag-over");
+      });
+      mapImage.addEventListener("dragleave", () => {
+        mapImage.classList.remove("drag-over");
+      });
+      mapImage.addEventListener("drop", (event) => {
+        event.preventDefault();
+        mapImage.classList.remove("drag-over");
+        loadMapFile(event.dataTransfer?.files?.[0]);
+      });
+    }
+    // === END LATENT TOOLBAR ================================================
+
+    popClose.addEventListener("click", (event) => {
+      event.stopPropagation();
+      hidePopover();
+    });
+    popLink.addEventListener("click", () => {
+      // anchor jump proceeds normally; just dismiss the card
+      hidePopover();
+    });
+    popover.addEventListener("click", (event) => {
+      event.stopPropagation(); // clicks inside the card never bubble out to the dismiss handler
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!activePin) return;
+      if (event.target.closest(".map-pin")) return; // pin handler decides what to do
+      hidePopover();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && activePin) hidePopover();
+    });
+
+    window.addEventListener("resize", () => {
+      if (activePin) positionPopover(activePin);
+    });
+    window.addEventListener("scroll", () => {
+      // popover is positioned within the frame so scroll doesn't move it,
+      // but resize-from-scroll (mobile address bar) can change layout — recompute
+      if (activePin) positionPopover(activePin);
+    }, { passive: true });
+
+    const storedImage = localStorage.getItem(imageKey);
+    if (storedImage) {
+      // User-uploaded override (only present in this browser's localStorage)
+      setMapImage(storedImage);
+    } else {
+      // Default: the baked-in satellite at house-satellite.png (CSS-driven)
+      mapImage.classList.add("has-static-map");
+      mapImage.innerHTML = "";
+    }
+    applyStoredPins();
+    updateLockUI();
+    setStatus(defaultStatus());
+  }
+
+  hydrateImageSlots();
+  decorateSpeciesAnchors();
+  initPropertyMap();
+  initLightbox();
+</script>
+</body>
+</html>

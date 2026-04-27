@@ -1,0 +1,9 @@
+# macOS Finder cruft
+.DS_Store
+
+# Per-project Claude Code state and settings — local only
+.claude/
+
+# Hand-off context document for Claude Code sessions; keep local, never publish.
+# Contains user/project context and personal references not meant for the public repo.
+CLAUDE_CODE_BRIEF.md

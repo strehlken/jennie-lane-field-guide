@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- field-guide cream background -->
+  <rect width="64" height="64" rx="11" fill="#f7f3eb"/>
+
+  <!-- bold serif 27 -->
+  <text x="32" y="48" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="42" font-weight="700"
+        fill="#2d4a3e"
+        letter-spacing="-1.5">27</text>
+
+  <!-- tiny crusoe palm, upper right -->
+  <g transform="translate(50 12)" fill="none" stroke-linecap="round">
+    <!-- trunk -->
+    <path d="M0 0 Q1 6 0 12" stroke="#7a5a2a" stroke-width="2"/>
+    <!-- fronds -->
+    <path d="M0 0 Q-4 -3 -8 -1" stroke="#2d4a3e" stroke-width="1.8"/>
+    <path d="M0 0 Q 4 -3  8 -1" stroke="#2d4a3e" stroke-width="1.8"/>
+    <path d="M0 0 Q-2 -5 -3 -9" stroke="#2d4a3e" stroke-width="1.8"/>
+    <path d="M0 0 Q 2 -5  3 -9" stroke="#2d4a3e" stroke-width="1.8"/>
+    <!-- one tiny coconut -->
+    <circle cx="0" cy="0.5" r="1.2" fill="#5a3e1e" stroke="none"/>
+  </g>
+</svg>
